@@ -36,6 +36,10 @@ Session(app)
 def index():
     return render_template("homepage.html")
 
+@app.route("/game")
+def game_lobby():
+    return render_template("game-lobby.html")
+
 @socketio.on('username')
 def username(data):
     print(data['username'])

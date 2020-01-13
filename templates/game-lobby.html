@@ -1,5 +1,39 @@
 {% extends 'layout.html' %}
 {% block title %}Game_Lobby{% endblock %}
 {% block main %}
-    Hier komt nog wat
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-3 is-parent">
+        <div class="tile is-child box">
+            <p class="title">Room...</p>
+            <p class="subtitle">information</p>
+        </div>
+        <div class="tile is-child box">
+            <p class="title">Player list</p>
+            <p style="padding-left: 220px;">Score</p>
+            <ul>
+                <li>_____<span style="padding-left: 200px;">...</span></li>
+                <li>_____<span style="padding-left: 200px;">...</span></li>
+                <li>_____<span style="padding-left: 200px;">...</span></li>
+                <li>_____<span style="padding-left: 200px;">...</span></li>
+            </ul>
+        </div>
+        <div class="tile is-child box">
+            <p class="subtitle">Ready up for the game to start</p>
+            <button class="button is-success is-large is-fullwidth">READY!</button>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+            <div class="content">
+                <p class="title">Question?</p>
+                <p class="subtitle">With even more content</p>
+                <div class="content">
+                    <p>Hier gaat blijkbaar content</p>
+                    <br>
+                    <p>Even kijken hoe dat er uit ziet</p>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
 {% endblock %}
