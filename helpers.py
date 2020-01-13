@@ -2,8 +2,14 @@ import requests
 import random
 import json
 
-def questions (category, token):
+def questions (category, token = None):
     """Contacts API and retrieves questions + answers based on category"""
+
+    # Als geen token is meegegeven, maak replacement voor debuggen
+    if not token:
+        token = requests.get("https://opentdb.com/api_token.php?command=request")
+        token = json.loads(token.text)['token']
+
 
     # Generate number of questions to be asked
     number_of_questions = random.randint(1, 3)
@@ -37,3 +43,5 @@ def questions (category, token):
         return None
         
     return question_dict
+
+print(questions(15))
