@@ -1,13 +1,20 @@
 {% extends 'layout.html' %}
-{% block title %}Index{% endblock %}
+{% block title %}homepage{% endblock %}
 {% block main %}
+<div class="container is-fluid">
 <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification is-warning">
-            <p class="title">...tiles</p>
-            <p class="subtitle">Bottom tile</p>
+            <center>
+              <p class="title">Join</p>
+              <p class="subtitle">choose your username</p>
+              <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+            </div>
+              <button class="button is-danger is-large">Go!</button>
+            </center>
           </article>
         </div>
         <div class="tile is-parent">
@@ -42,4 +49,5 @@
       </article>
     </div>
   </div>
+</div>
 {% endblock %}
