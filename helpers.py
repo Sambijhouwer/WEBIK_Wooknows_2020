@@ -43,5 +43,3 @@ def questions (category, token = None):
         return None
         
     return question_dict
-
-print(questions(15))
