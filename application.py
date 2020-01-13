@@ -34,7 +34,7 @@ Session(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("homepage.html")
 
 @socketio.on('username')
 def username(data):
