@@ -5,6 +5,15 @@ body{
   width: 100%;
 }
 
+.title {
+  color: white;
+}
+
+.subtitle {
+  color: white;
+  font-size: x-large;
+}
+
 .tile.is-vertical>.tile.is-child:not(:last-child) {
   margin-bottom: 0.7rem!important;
 }
@@ -33,7 +42,7 @@ body{
   text-align: center;
 
   border-color: #168267;
-  border-width: 2px;
+  border-width: 4px;
   border-style: solid;
 }
 
@@ -44,7 +53,7 @@ body{
   text-align: center;
 
   border-color: #c2921f;
-  border-width: 2px;
+  border-width: 4px;
   border-style: solid;
 }
 
@@ -55,7 +64,7 @@ body{
   text-align: center;
 
   border-color: #d13f40;
-  border-width: 2px;
+  border-width: 4px;
   border-style: solid;
 }
 
@@ -66,12 +75,8 @@ body{
   text-align: center;
   
   border-color: #155e28;
-  border-width: 2px;
+  border-width: 4px;
   border-style: solid;
-}
-
-.subtitle {
-  font-size: x-large;
 }
 
 #logo1{
@@ -100,6 +105,7 @@ body{
   border-width: 2px;
   border-style: solid;
   background-color: #373995;
+  color: white;
 }
 
 #room_ready {
