@@ -2,6 +2,48 @@ body{
   background-color:#292861;
   position: fixed;
   height: 100%;
+  width: 100%;
+}
+
+.tile.is-vertical>.tile.is-child:not(:last-child) {
+  margin-bottom: 0.7rem!important;
+}
+
+.tile.is-parent.flonk {
+  padding: .75rem;
+  padding-left: 0.5rem;
+}
+
+.tile.is-vertical.is-3 {
+  padding: .75rem;
+}
+
+#questionbox {
+  padding: .75rem;
+}
+
+.content.is-child {
+  text-align: center;
+}
+
+.tile.is-child.is-primary.box {
+  background-color: olivedrab;
+  color: white;
+}
+
+.tile.is-child.is-warning.box {
+  background-color: darkblue;
+  color: white;
+}
+
+.tile.is-child.is-danger.box {
+  background-color: red;
+  color: white;
+}
+
+.tile.is-child.is-info.box {
+  background-color: orange;
+  color: white;
 }
 
 #logo1{
