@@ -47,16 +47,18 @@
         <article class="tile is-child notification is-danger">
           <centered>
           <p class="title">Create your own room!</p>
-          <div class="container is-fluid">
-            <div class="container is-fluid">
-          <div class="input-is-hovered">
-            <input class="input" type="text" placeholder="Room name">
-          </div>
-        </div>
-      </div>
         </centered>
           <div class="content">
-            <button class="button is-info is-medium" >Make</button> 
+            <div class="field is-grouped">
+              <p class= "control is-expanded">
+                <input class="input" type="text" placeholder="Create your own room">
+              </p>
+              <p class="control">
+                <a class="button is-info">
+                  Search
+                </a>
+              </p>
+            </div>
           </div>
         </article>
       </div>
@@ -70,11 +72,18 @@
           for the next question. After 20 questions the person with the most correct answers wins.
           </p>
           <div class="content">
-            <!-- Content -->
+            <div class="button" href="#" id='curtain' onclick="toggle()">heyyo</div>
           </div>
         </div>
       </article>
     </div>
   </div>
 </div>
+<script>
+  function toggle(){
+      var curtain = document.getElementById('curtain');
+      curtain.classList.toggle('active')
+
+  }
+</script>
 {% endblock %}
