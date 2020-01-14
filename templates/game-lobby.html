@@ -16,6 +16,7 @@
                 <li>_____<span style="padding-left: 200px;">...</span></li>
                 <li>_____<span style="padding-left: 200px;">...</span></li>
             </ul>
+            <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
         </div>
         <div class="tile is-child box" id="room_ready">
             <p class="subtitle">Ready up for the game to start</p>
@@ -51,4 +52,29 @@
 
     </div>
 </div>
+
+<div class="modal" id="myModal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="buttons has-addons is-centered is-large">
+        <button class="button is-danger" id="category">category 1</button>
+        <button class="button is-link" id="category">category 2</button>
+        <button class="button is-warning" id="category">category 3</button>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <script> 
+  document.querySelectorAll('.modal-button').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var target = document.querySelector(el.getAttribute('data-target'));
+      
+      target.classList.add('is-active');
+      
+      target.querySelector('.modal-close').addEventListener('click',   function() {
+          target.classList.remove('is-active');
+       });
+    });
+  });
+  </script>
 {% endblock %}
