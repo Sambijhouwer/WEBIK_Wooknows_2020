@@ -3,7 +3,6 @@ body{
   position: absolute;
   height: 100%;
   width: 100%;
-<<<<<<< HEAD
 }
 
 .tile.is-vertical>.tile.is-child:not(:last-child) {
@@ -45,8 +44,6 @@ body{
 .tile.is-child.is-info.box {
   background-color: orange;
   color: white;
-=======
->>>>>>> a99b4264501cb6e6ba394d647f1336b63eedbb53
 }
 
 #logo1{
