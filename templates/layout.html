@@ -4,27 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="/WEBIK_Wooknows_2020/static/stylesheet.css">
+    <link rel="stylesheet" href="static/styles.css">
   </head>
-  <body style="background-color:#292861;">
-    
-    <nav class="navbar" role="navigation" aria-label="main navigation" style="padding-top: 10px; padding-bottom: 10px; background-color: #292861;">
-      <div class="navbar-brand">
-        <div class="container is-fluid">
-        <img src="https://i.ibb.co/N10sbKw/logo-no.png" class="level-left" width="104" height="113" alt="logo">
+  <body>
+    <header class="header" id="headerStyle">
+      <div class="container is-fluid">
+          <div class="level-left">
+            <img src="https://i.ibb.co/Y34k3hV/logo-no.png" width="104" height="113" alt="logo">
+            <h1 id="logo1">Hoo&nbsp</h1>
+            <h2 id="logo2">Knows</h2>
       </div>
-        <div class="level-item">
-          <h1 style="font-size: 48px;">Hoo&nbsp</h1>
-          <h2 style="font-size: 48px; color: rgb(242, 175, 88);">Knows</h2>
-        </div>
-      </div>
-    </nav>
+    </div>
+  </header>
   {% block main %}
   {% endblock %}
-  </body >
+  </body>
 </html>
