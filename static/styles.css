@@ -1,0 +1,16 @@
+body{
+  background-color:#292861;
+  position: fixed;
+  height: 100%;
+}
+
+#logo1{
+  font-size: 4vw;
+}
+#logo2{
+  font-size: 4vw; color: rgb(242, 175, 88);
+}
+#headerStyle{
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+}

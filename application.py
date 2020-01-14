@@ -19,7 +19,16 @@ GAME_ROOMS = {}
 
 @app.route("/")
 def index():
+    return render_template("homepage.html")
+
+@app.route('/test')
+def test():
     return render_template("test.html")
+
+@app.route("/game")
+def game_lobby():
+    return render_template("game-lobby.html")
+
 
 @socketio.on('username')
 def create_user_ses():
