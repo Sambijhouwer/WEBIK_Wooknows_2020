@@ -31,18 +31,18 @@ body{
   color: white;
 }
 
-.tile.is-child.is-warning.box {
-  background-color: darkblue;
+.tile.is-child.is-info.box {
+  background-color: #4c87e6;
   color: white;
 }
 
 .tile.is-child.is-danger.box {
-  background-color: red;
+  background-color: #db0000;
   color: white;
 }
 
-.tile.is-child.is-info.box {
-  background-color: orange;
+.tile.is-child.is-warning.box {
+  background-color: darkblue;
   color: white;
 }
 
@@ -57,4 +57,8 @@ body{
 #headerStyle{
   padding-top: 10px; 
   padding-bottom: 10px; 
+}
+
+#paers {
+  background-color: gold;
 }
