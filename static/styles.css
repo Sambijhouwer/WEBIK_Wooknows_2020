@@ -1,8 +1,9 @@
 body{
   background-color:#292861;
-  position: fixed;
+  position: absolute;
   height: 100%;
   width: 100%;
+<<<<<<< HEAD
 }
 
 .tile.is-vertical>.tile.is-child:not(:last-child) {
@@ -44,13 +45,17 @@ body{
 .tile.is-child.is-info.box {
   background-color: orange;
   color: white;
+=======
+>>>>>>> a99b4264501cb6e6ba394d647f1336b63eedbb53
 }
 
 #logo1{
   font-size: 4vw;
+  color: rgb(109, 110, 113)
 }
 #logo2{
-  font-size: 4vw; color: rgb(242, 175, 88);
+  font-size: 4vw; 
+  color: rgb(242, 175, 88);
 }
 #headerStyle{
   padding-top: 10px; 
