@@ -29,6 +29,9 @@ def test():
 def game_lobby():
     return render_template("game-lobby.html")
 
+@app.route("/floep")
+def floep():
+    return render_template("spelding.html")
 
 @socketio.on('username')
 def create_user_ses():
