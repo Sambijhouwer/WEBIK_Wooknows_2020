@@ -34,7 +34,16 @@ Session(app)
 
 @app.route("/")
 def index():
-    return render_template("homepage.html")
+    if request.method == 'GET':
+        return render_template('homepage.html')
+    
+    else:
+        # Make sure a user put in a username
+        if not request.form.get('username')
+        return render_template('404')
+
+        username = request.form.get('username')
+
 
 @app.route("/game")
 def game_lobby():
