@@ -29,14 +29,11 @@ GAME_ROOMS = {}
 @app.route("/")
 def index():
     return render_template('homepage.html')
-        
-@app.route('/test')
-def test():
-    return render_template("test.html")
 
-@app.route("/game")
-def game_lobby():
-    return render_template("game-lobby.html")
+@app.route("/game-lobby/<game_id>")
+def game_lobby(game_id):
+    info = GAME_ROOMS[game_id].to_json()
+    return render_template("game-lobby.html", info=info)
 
 @app.route("/floep")
 def floep():
@@ -67,8 +64,8 @@ def joinGame(data):
     if room in GAME_ROOMS:
         GAME_ROOMS[room].add_player(session['user_id'])
         join_room(room)
-        print(GAME_ROOMS[room])
-        send(GAME_ROOMS[room].to_json(), room=room)
+        emit("lobby", {'url': url_for('game_lobby', game_id=room)})
+        emit("lobby_update", GAME_ROOMS[room].to_json(), room=room)
     else: 
         return False
 
