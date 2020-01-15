@@ -172,3 +172,7 @@ a.no_style {
   margin-left: auto;
   margin-right: auto;
 }
+
+.room_score {
+  padding-left: 200px;
+}
