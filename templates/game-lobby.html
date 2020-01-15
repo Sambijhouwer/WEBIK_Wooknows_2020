@@ -10,7 +10,7 @@
         </div>
         <div class="tile is-child box" id="room_board">
             <p class="title">Player list</p>
-            <p>Names<span style="padding-left: 170px;">Score</span></p>
+            <p style="text-align: justify;">Names Score</p>
             <ul>
                 <li>_____<span style="padding-left: 200px;">...</span></li>
                 <li>_____<span style="padding-left: 200px;">...</span></li>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="tile" id="questionbox">
-        <article class="tile notification is-vertical" id="paers">
+        <article class="tile notification is-vertical" id="QnA_container">
             <div class="content">
                 <p class="title" style="text-align: center;">What is the largest fish in the world?</p>
             </div>
@@ -58,9 +58,9 @@
     <div class="modal-background"></div>
     <div class="modal-content">
       <div class="buttons has-addons is-centered is-large">
-        <button class="button is-danger" id="category">category 1</button>
-        <button class="button is-link" id="category">category 2</button>
-        <button class="button is-warning" id="category">category 3</button>
+        <button class="button is-danger" id="category" value="{{ category }}">{{ category }}</button>
+        <button class="button is-link" id="category" value="{{ category }}">{{ category }}</button>
+        <button class="button is-warning" id="category" value="{{ category }}">{{ category }}</button>
       </div>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
