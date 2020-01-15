@@ -47,6 +47,6 @@ const user_id = socket =>{
 const make_channel = (data, socket) =>{
     rooms = document.querySelector("#room_list")
     room = document.createElement("a")
-    room.innerHTML = `<a class="list-item" data-room_id="{${data['game_id']}}">${data['game_name']}</a>`
+    room.innerHTML = `<a class="room_buttons" data-room_id="{${data['game_id']}}">${data['game_name']}</a>`
     rooms.appendChild(room)
 }
