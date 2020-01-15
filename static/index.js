@@ -27,12 +27,8 @@ const init = ()=>{
             document.close();
         })
         socket.on("lobby_update", data =>{
-            scoreboard = document.querySelector("#scoreboard")
-            data['players'].forEach(player =>{
-                score = document.createElement("li")
-                score.innerHTML = `${player}<span class="room_score">${data['scores'][player]}</span>`
-                scoreboard.appendChild(score)
-            })  
+            let id = data['game_id']
+            socket.emit('lobbyupdate', {id})
         })
         socket.on("error", data =>{
             return

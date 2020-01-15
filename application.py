@@ -1,4 +1,5 @@
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
+from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -12,8 +13,13 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config['SECRET_KEY'] = 'secret'
+app.config['SECRET_KEY'] = 'asnkdansdkank'
 socketio = SocketIO(app)
+
+app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 GAME_ROOMS = {}
 USERS = {}
@@ -36,9 +42,9 @@ def floep():
 
 @socketio.on('username')
 def create_user_ses(data):
+    session.clear()
     session['username'] = data['username']
-    print("Done")
-    return redirect('/')
+    return True
 
 @socketio.on('createGame')
 def createGame(data):
@@ -56,17 +62,21 @@ def createGame(data):
 def joinGame(data):
     room = data['room_id']
     if room in GAME_ROOMS:
-        if not GAME_ROOMS[room].add_player(session['user_id']):
+        if not GAME_ROOMS[room].add_player(session['username']):
             return False
         join_room(room)
-        emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())})
-        emit("lobby_update", GAME_ROOMS[room].to_json(), room=room)
+        emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())}, room=room)
+        emit("lobby_update", {'room': room}, room=room)
     else: 
         return False
 
 @socketio.on('get rooms')
 def send_rooms():
     emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
+
+@socketio.on("lobbyupdate")
+def lobbyupdate(data):
+    emit("lobby", {'url': lobby_render(GAME_ROOMS[data['id']].to_json())}, room=room)
 
 def lobby_render(info):
     return render_template("game-lobby.html", info=info)
