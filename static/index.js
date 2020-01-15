@@ -14,7 +14,12 @@ const init = ()=>{
             socket.emit('joinGame', {room_id})
         })
         socket.on('new_room', data =>{
-            make_channel(data.room, socket)
+            make_channel(data, socket)
+        })
+        socket.on('all_rooms', data =>{
+            for (room of data){
+                make_channel(room, socket)
+            }
         })
     })
     
@@ -22,12 +27,15 @@ const init = ()=>{
 const setup = socket =>{
     createGame(socket);
     user_id(socket);
+    socket.emit('get rooms');
+    console.log('hier12')
 }
 const createGame = socket =>{
     button = document.querySelector("#createGame")
     button.addEventListener("click", ()=>{
+        name = document.querySelector("#createGame_name").value
+        document.querySelector("#createGame_name").value = ""
         console.log("Creating game...");
-        let name = 'Kamer 1'
         socket.emit('createGame', {name});
     }) 
 }
@@ -36,6 +44,9 @@ const user_id = socket =>{
     socket.emit('username')
 }
 
-const make_channel = (channel, socket) =>{
-    console.log("In de maak..." + channel)
+const make_channel = (data, socket) =>{
+    rooms = document.querySelector("#room_list")
+    room = document.createElement("a")
+    room.innerHTML = `<a class="list-item" data-room_id="{${data['game_id']}}">${data['game_name']}</a>`
+    rooms.appendChild(room)
 }
