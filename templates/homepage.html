@@ -9,9 +9,9 @@
           <article class="tile is-child notification is-warning">
             <center>
               <div class="container is-fluid">
-              <p class="title">Join</p>
+              <a href="/floep"><p class="title">Join</p></a>
               <p class="subtitle">choose your username</p>
-              <img src="https://i.ibb.co/N10sbKw/logo-no.png" class="level-left" width="81" height="9" alt="logo">
+              <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level-left" width="81" height="9" alt="logo">
               <div class="container is-fluid">
               <div class="field">
                 <div class="input-is-hovered">
@@ -34,7 +34,7 @@
 
               </div>
           </div>
-            <button class="button is-warning is-medium">Join!</button>
+            <button class="button is-warning is-medium"><a href="/game">Join!</a></button>
           </article>
         </div>
       </centered>
@@ -63,23 +63,15 @@
       <article class="tile is-child notification is-success">
         <div class="content">
           <p class="title">How to play</p>
-          <p class="subtitle">After you've chosen a unique username, you can join or create a game room.
-          2-4 players fit in one room. Each round will have one quizmaster, that chooses a question category
-          for the next question. After 20 questions the person with the most correct answers wins.
+          <p class="subtitle">After you've chosen a unique username, you can join or create a game room. <br>
+            2-4 players fit in one room. <br>
+            A quizmaster will be selected at random. This person gets to choose the category for the coming questions. <br>
+            The amount of questions with this category are also random. <br>
+            You score points based on the speed on which you answer. The person with the moist points wins!
           </p>
-          <div class="content">
-            <div class="button" href="#" id='curtain' onclick="toggle()">heyyo</div>
-          </div>
         </div>
       </article>
     </div>
   </div>
 </div>
-<script>
-  function toggle(){
-      var curtain = document.getElementById('curtain');
-      curtain.classList.toggle('active')
-
-  }
-</script>
 {% endblock %}
