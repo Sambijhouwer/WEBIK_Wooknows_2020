@@ -53,8 +53,6 @@ def createGame(data):
         rdata = GAME_ROOMS[room].to_json()
         emit('join_room', {'room': rdata})
         emit('new_room', rdata, broadcast=True)
-        print(data['name'])
-        print(GAME_ROOMS)
     else:
         return False
 
