@@ -1,7 +1,9 @@
 body{
   background-color:#292861;
-  position: fixed;
+  position: absolute;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #logo1{

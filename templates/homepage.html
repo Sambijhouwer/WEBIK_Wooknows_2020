@@ -30,13 +30,9 @@
             <center>
             <p class="title">Available rooms</p>
             <div class="container is-fluid">
-            <ul>
-              <li> room 1</li>
-              <li> room 2</li>
-              <li> room 3</li>
-              <li> room 4</li>
-              <li> room 5</li>
-            </ul>
+              <div class="list is-hoverable" id="room_list">
+
+              </div>
           </div>
             <button class="button is-warning is-medium">Join!</button>
           </article>
@@ -51,11 +47,11 @@
           <div class="content">
             <div class="field is-grouped">
               <p class= "control is-expanded">
-                <input class="input" type="text" placeholder="Create your own room">
+                <input class="input" type="text" placeholder="Create your own room" id='createGame_name'>
               </p>
               <p class="control">
-                <a class="button is-info">
-                  Search
+                <a class="button is-info" id="createGame">
+                  Create
                 </a>
               </p>
             </div>

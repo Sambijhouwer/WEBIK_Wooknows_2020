@@ -17,6 +17,15 @@ socketio = SocketIO(app)
 
 GAME_ROOMS = {}
 
+# Ensure responses aren't cached
+# @app.after_request
+# def after_request(response):
+#     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+#     response.headers["Expires"] = 0
+#     response.headers["Pragma"] = "no-cache"
+#     return response
+
+
 @app.route("/")
 def index():
     return render_template("homepage.html")
@@ -37,11 +46,17 @@ def create_user_ses():
 
 @socketio.on('createGame')
 def createGame(data):
-    gm = Game.info(data['name'])
-    room = gm.game_id
-    GAME_ROOMS[room] = gm
-    emit('join_room', {'room': GAME_ROOMS[room].to_json()})
-    emit('new_room', {'room': GAME_ROOMS[room].to_json()}, broadcast=True)
+    if data['name'] not in GAME_ROOMS:
+        gm = Game.info(data['name'])
+        room = gm.game_id
+        GAME_ROOMS[room] = gm
+        rdata = GAME_ROOMS[room].to_json()
+        emit('join_room', {'room': rdata})
+        emit('new_room', rdata, broadcast=True)
+        print(data['name'])
+        print(GAME_ROOMS)
+    else:
+        return False
 
 @socketio.on('joinGame')
 def joinGame(data):
@@ -49,7 +64,14 @@ def joinGame(data):
     if room in GAME_ROOMS:
         GAME_ROOMS[room].add_player(session['user_id'])
         join_room(room)
+        print(GAME_ROOMS[room])
         send(GAME_ROOMS[room].to_json(), room=room)
+    else: 
+        return False
+
+@socketio.on('get rooms')
+def send_rooms():
+    emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
 
 def errorhandler(e):
     """Handle error"""

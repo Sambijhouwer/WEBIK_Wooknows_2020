@@ -41,6 +41,10 @@ class info(object):
         else:
             return False
 
+    def choose_quizmaster(self):
+        self.quizmaster = random.choice(self.players)
+        return True
+
     def to_json(self):
         """Turn object to JSON"""
         return {
