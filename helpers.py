@@ -29,12 +29,12 @@ def questions (category, token = None):
 
         # A dictionary keyed by an integer with values being dicts as values question + (incorrect)answers
         try:
-            question_dict = {}
+            question_list = []
             for i, item in enumerate(response['results']):
-                question_dict[i] = {}
-                question_dict[i]['question'] = item['question']
-                question_dict[i]['correct'] = item['correct_answer']
-                question_dict[i]['incorrects'] = item['incorrect_answers']
+                question_list.append({})
+                question_list[i]['question'] = item['question']
+                question_list[i]['correct'] = item['correct_answer']
+                question_list[i]['incorrects'] = item['incorrect_answers']
         except (KeyError, TypeError, ValueError):
             return None
     
@@ -42,4 +42,4 @@ def questions (category, token = None):
     else:
         return None
         
-    return question_dict
+    return question_list
