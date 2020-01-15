@@ -1,8 +1,9 @@
-body{
+html, body{
   background-color:#292861;
   position: absolute;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 #logo1{
@@ -16,4 +17,8 @@ body{
 #headerStyle{
   padding-top: 10px; 
   padding-bottom: 10px; 
+}
+
+#room_list{
+  height:200px; width:50%; overflow: auto;
 }
