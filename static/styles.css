@@ -144,3 +144,15 @@ a.no_style {
   border-style: solid;
   background-color: #373995;
 }
+
+#create_your_room{
+  margin-bottom: 1%;
+}
+
+#room_list{
+  background-color: rgb(32, 126, 189);
+}
+
+.room_buttons{
+  color: black;
+}
