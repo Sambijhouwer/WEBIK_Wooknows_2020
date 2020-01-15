@@ -145,6 +145,7 @@ a.no_style {
   background-color: #373995;
 }
 
+<<<<<<< HEAD
 #create_your_room{
   margin-bottom: 1%;
 }
@@ -155,4 +156,10 @@ a.no_style {
 
 .room_buttons{
   color: black;
+=======
+#owl_homepage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+>>>>>>> 9a1d6403df9bd5140a975ee5ed56dcb8eb496ade
 }
