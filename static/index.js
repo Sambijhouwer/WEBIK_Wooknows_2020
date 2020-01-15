@@ -14,27 +14,43 @@ const init = ()=>{
             socket.emit('joinGame', {room_id})
         })
         socket.on('new_room', data =>{
-            make_channel(data, socket)
+            make_channel(data)
         })
         socket.on('all_rooms', data =>{
             for (room of data){
-                make_channel(room, socket)
+                make_channel(room)
             }
         })
         socket.on("lobby", data =>{
-            window.location = data.url;
+            document.open();
+            document.write(data.url);
+            document.close();
+        })
+        socket.on("lobby_update", data =>{
+            scoreboard = document.querySelector("#scoreboard")
+            data['players'].forEach(player =>{
+                score = document.createElement("li")
+                score.innerHTML = `${player}<span class="room_score">${data['scores'][player]}</span>`
+                scoreboard.appendChild(score)
+            })  
+        })
+        socket.on("error", data =>{
+            return
         })
     })
     
 }
 const setup = socket =>{
     createGame(socket);
-    user_id(socket);
     joinGame(socket);
+    username(socket);
     socket.emit('get rooms');
 }
 const createGame = socket =>{
     button = document.querySelector("#createGame")
+    if (!button){
+        return true
+    }
     button.addEventListener("click", ()=>{
         name = document.querySelector("#createGame_name").value
         if (name == ""){
@@ -46,12 +62,30 @@ const createGame = socket =>{
     }) 
 }
 
-const user_id = socket =>{
-    socket.emit('username')
+const username = socket =>{
+    let username = localStorage.getItem('username')
+    if (username){
+        socket.emit('username', {username})
+        return true
+    }
+    let button = document.querySelector("#userbutton")
+    if (!button){
+        return true
+    }
+    button.addEventListener("click", ()=>{
+        username = document.querySelector("#usertext").value.trim()
+        if (username != ""){
+            localStorage.setItem("username", username)
+            socket.emit('username', {username})
+        }
+    })    
 }
 
 const joinGame = socket =>{
     button = document.querySelector("#joinGame")
+    if (!button){
+        return true
+    }
     button.addEventListener('click', ()=>{
         let room_id = localStorage.getItem("room")
         if (!room_id){
@@ -71,8 +105,11 @@ const room_togle = (room) =>{
     })
 } 
 
-const make_channel = (data, socket) =>{
+const make_channel = (data) =>{
     rooms = document.querySelector("#room_list")
+    if (!rooms){
+        return true
+    }
     room = document.createElement("a")
     room.classList.add('list-item')
     room.setAttribute('data-room_id', data['game_id'])

@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = 'secret'
 socketio = SocketIO(app)
 
 GAME_ROOMS = {}
-
+USERS = {}
 # Ensure responses aren't cached
 # @app.after_request
 # def after_request(response):
@@ -30,19 +30,15 @@ GAME_ROOMS = {}
 def index():
     return render_template('homepage.html')
 
-@app.route("/game-lobby/<game_id>")
-def game_lobby(game_id):
-    info = GAME_ROOMS[game_id].to_json()
-    return render_template("game-lobby.html", info=info)
-
 @app.route("/floep")
 def floep():
     return render_template("spelding.html")
 
 @socketio.on('username')
-def create_user_ses():
-    session['user_id'] = request.sid
-    return
+def create_user_ses(data):
+    session['username'] = data['username']
+    print("Done")
+    return redirect('/')
 
 @socketio.on('createGame')
 def createGame(data):
@@ -60,9 +56,10 @@ def createGame(data):
 def joinGame(data):
     room = data['room_id']
     if room in GAME_ROOMS:
-        GAME_ROOMS[room].add_player(session['user_id'])
+        if not GAME_ROOMS[room].add_player(session['user_id']):
+            return False
         join_room(room)
-        emit("lobby", {'url': url_for('game_lobby', game_id=room)})
+        emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())})
         emit("lobby_update", GAME_ROOMS[room].to_json(), room=room)
     else: 
         return False
@@ -70,6 +67,9 @@ def joinGame(data):
 @socketio.on('get rooms')
 def send_rooms():
     emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
+
+def lobby_render(info):
+    return render_template("game-lobby.html", info=info)
 
 def errorhandler(e):
     """Handle error"""
