@@ -111,7 +111,7 @@ const make_channel = (data) =>{
         return true
     }
     room = document.createElement("a")
-    room.classList.add('list-item')
+    room.classList.add('list-item', 'room_button')
     room.setAttribute('data-room_id', data['game_id'])
     room.innerHTML = data['game_name']
     rooms.appendChild(room)
