@@ -74,13 +74,9 @@ const room_togle = (room) =>{
 const make_channel = (data, socket) =>{
     rooms = document.querySelector("#room_list")
     room = document.createElement("a")
-<<<<<<< HEAD
     room.classList.add('list-item')
     room.setAttribute('data-room_id', data['game_id'])
     room.innerHTML = data['game_name']
-=======
-    room.innerHTML = `<a class="room_buttons" data-room_id="{${data['game_id']}}">${data['game_name']}</a>`
->>>>>>> 3634ccf898c12d319e3b71033a0b2153f3a0445d
     rooms.appendChild(room)
     room.addEventListener('click', ()=>{
         localStorage.setItem("room", data['game_id'])
