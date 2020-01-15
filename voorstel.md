@@ -16,8 +16,8 @@ een vraag te zien en moeten zo snel mogelijk goed antwoord geven op de vraag. He
 wordt gekozen door één van de spelers, de quizmaster. Deze wordt random gekozen na een random aantal rondes.
 Na een variabel aantal vragen wordt de winnaar bepaald.
 
-# Schetsen
-![schetsen](schetsen.jpg)
+# Views
+- Zie pdf file
 
 # Features
 
@@ -45,3 +45,22 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 # concurrerende websites
 
 - kahoot
+
+# Controllers
+
+-index
+    This is the main page, here you can create a room, join a room and choose your username
+-game
+    This is the page where the rooms are hosted and the game takes place.
+
+
+
+# plugins and frameworks
+
+- Flask
+    https://flask.palletsprojects.com/en/1.1.x/
+- SocketIO
+    https://socket.io/docs/
+- bulma
+    https://bulma.io/documentation/
+
