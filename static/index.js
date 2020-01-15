@@ -21,19 +21,25 @@ const init = ()=>{
                 make_channel(room, socket)
             }
         })
+        socket.on("lobby", data =>{
+            window.location = data.url;
+        })
     })
     
 }
 const setup = socket =>{
     createGame(socket);
     user_id(socket);
+    joinGame(socket);
     socket.emit('get rooms');
-    console.log('hier12')
 }
 const createGame = socket =>{
     button = document.querySelector("#createGame")
     button.addEventListener("click", ()=>{
         name = document.querySelector("#createGame_name").value
+        if (name == ""){
+            return false
+        }
         document.querySelector("#createGame_name").value = ""
         console.log("Creating game...");
         socket.emit('createGame', {name});
@@ -44,9 +50,36 @@ const user_id = socket =>{
     socket.emit('username')
 }
 
+const joinGame = socket =>{
+    button = document.querySelector("#joinGame")
+    button.addEventListener('click', ()=>{
+        let room_id = localStorage.getItem("room")
+        if (!room_id){
+            return
+        }
+        socket.emit("joinGame", {room_id} )
+    })
+}
+
+const room_togle = (room) =>{
+    document.querySelectorAll("#room_list > a").forEach(e =>{
+        if (e.innerHTML == room){
+            e.classList.add('is-active');
+        } else{
+            e.classList.remove("is-active")
+        }
+    })
+} 
+
 const make_channel = (data, socket) =>{
     rooms = document.querySelector("#room_list")
     room = document.createElement("a")
-    room.innerHTML = `<a class="list-item" data-room_id="{${data['game_id']}}">${data['game_name']}</a>`
+    room.classList.add('list-item')
+    room.setAttribute('data-room_id', data['game_id'])
+    room.innerHTML = data['game_name']
     rooms.appendChild(room)
+    room.addEventListener('click', ()=>{
+        localStorage.setItem("room", data['game_id'])
+        room_togle(data['game_name'])
+    })
 }
