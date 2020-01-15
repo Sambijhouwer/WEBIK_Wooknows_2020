@@ -7,6 +7,10 @@ html, body{
   padding: 0;
 }
 
+a.no_style {
+  text-decoration-line: none;
+}
+
 .title {
   color: white;
 }
@@ -48,6 +52,10 @@ html, body{
   border-style: solid;
 }
 
+.tile.is-child.is-info.box:hover {
+  filter: brightness(95%);
+}
+
 .tile.is-child.is-primary.box {
   background-color: #EAB126;
   color: white;
@@ -57,6 +65,10 @@ html, body{
   border-color: #c2921f;
   border-width: 4px;
   border-style: solid;
+}
+
+.tile.is-child.is-primary.box:hover {
+  filter: brightness(95%);
 }
 
 .tile.is-child.is-danger.box {
@@ -70,6 +82,10 @@ html, body{
   border-style: solid;
 }
 
+.tile.is-child.is-danger.box:hover {
+  filter: brightness(95%);
+}
+
 .tile.is-child.is-warning.box {
   background-color: #1B7B34;
   color: white;
@@ -80,6 +96,10 @@ html, body{
   border-width: 4px;
   border-style: solid;
 
+}
+
+.tile.is-child.is-warning.box:hover {
+  filter: brightness(95%);
 }
 
 #logo1{
@@ -95,11 +115,7 @@ html, body{
   padding-bottom: 10px; 
 }
 
-#room_list{
-  height:200px; width:50%; overflow: auto;
-}
-
-#paers {
+#QnA_container {
   background-color: #373995;
   color: white;
   border-width: 2px;
