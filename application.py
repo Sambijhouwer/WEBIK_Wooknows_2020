@@ -28,19 +28,8 @@ GAME_ROOMS = {}
 
 @app.route("/")
 def index():
-    if request.method == 'POST':
-        # Make sure a user put in a username
-        if not request.form.get('username'):
-            return render_template('homepage.html')
-
-        username = request.form.get('username')
-        return render_template("game-lobby.html")
-    
-    else:
-        return render_template('homepage.html')
+    return render_template('homepage.html')
         
-
-
 @app.route('/test')
 def test():
     return render_template("test.html")
