@@ -53,7 +53,7 @@ a.no_style {
 }
 
 .tile.is-child.is-info.box:hover {
-  filter: brightness(95%);
+  filter: brightness(92%);
 }
 
 .tile.is-child.is-primary.box {
@@ -68,7 +68,7 @@ a.no_style {
 }
 
 .tile.is-child.is-primary.box:hover {
-  filter: brightness(95%);
+  filter: brightness(92%);
 }
 
 .tile.is-child.is-danger.box {
@@ -99,7 +99,7 @@ a.no_style {
 }
 
 .tile.is-child.is-warning.box:hover {
-  filter: brightness(95%);
+  filter: brightness(92%);
 }
 
 #logo1{
