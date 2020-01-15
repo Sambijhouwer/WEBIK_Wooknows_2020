@@ -144,3 +144,9 @@ a.no_style {
   border-style: solid;
   background-color: #373995;
 }
+
+#owl_homepage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
