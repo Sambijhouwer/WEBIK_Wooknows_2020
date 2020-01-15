@@ -1,4 +1,5 @@
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
+from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -12,11 +13,16 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config['SECRET_KEY'] = 'secret'
+app.config['SECRET_KEY'] = 'asnkdansdkank'
 socketio = SocketIO(app)
 
-GAME_ROOMS = {}
+app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
+GAME_ROOMS = {}
+USERS = {}
 # Ensure responses aren't cached
 # @app.after_request
 # def after_request(response):
@@ -30,19 +36,15 @@ GAME_ROOMS = {}
 def index():
     return render_template('homepage.html')
 
-@app.route("/game-lobby/<game_id>")
-def game_lobby(game_id):
-    info = GAME_ROOMS[game_id].to_json()
-    return render_template("game-lobby.html", info=info)
-
 @app.route("/floep")
 def floep():
     return render_template("spelding.html")
 
 @socketio.on('username')
-def create_user_ses():
-    session['user_id'] = request.sid
-    return
+def create_user_ses(data):
+    session.clear()
+    session['username'] = data['username']
+    return True
 
 @socketio.on('createGame')
 def createGame(data):
@@ -60,16 +62,24 @@ def createGame(data):
 def joinGame(data):
     room = data['room_id']
     if room in GAME_ROOMS:
-        GAME_ROOMS[room].add_player(session['user_id'])
+        if not GAME_ROOMS[room].add_player(session['username']):
+            return False
         join_room(room)
-        emit("lobby", {'url': url_for('game_lobby', game_id=room)})
-        emit("lobby_update", GAME_ROOMS[room].to_json(), room=room)
+        emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())}, room=room)
+        emit("lobby_update", {'room': room}, room=room)
     else: 
         return False
 
 @socketio.on('get rooms')
 def send_rooms():
     emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
+
+@socketio.on("lobbyupdate")
+def lobbyupdate(data):
+    emit("lobby", {'url': lobby_render(GAME_ROOMS[data['id']].to_json())}, room=room)
+
+def lobby_render(info):
+    return render_template("game-lobby.html", info=info)
 
 def errorhandler(e):
     """Handle error"""

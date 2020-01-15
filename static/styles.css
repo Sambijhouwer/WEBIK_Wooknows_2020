@@ -157,7 +157,18 @@ a.no_style {
 
 #room_list{
   background-color: rgb(32, 126, 189);
+  max-height: 200px; 
+  width: 100%;
+  overflow: hidden; 
+  overflow-y: scroll;
+}
+
+.room_buttons{
   color: black;
+  font-size: normal;
+  border-color: rgb(32, 126, 170);
+  background-color: rgb(32, 126, 189)
+  
 }
 
 #owl_homepage {
@@ -168,4 +179,8 @@ a.no_style {
 
 #joinGame {
   margin-top: 5px;
+}
+
+.room_score {
+  padding-left: 200px;
 }
