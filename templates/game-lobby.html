@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% block title %}Game Lobby{% endblock %}
 {% block main %}
+<div class="container is-fluid">
 <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
         <div class="tile is-child box" id="room_info">
@@ -64,6 +65,7 @@
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
+</div>
   <script> 
   document.querySelectorAll('.modal-button').forEach(function(el) {
     el.addEventListener('click', function() {
