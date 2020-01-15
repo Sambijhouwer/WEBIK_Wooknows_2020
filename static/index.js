@@ -74,7 +74,11 @@ const room_togle = (room) =>{
 const make_channel = (data, socket) =>{
     rooms = document.querySelector("#room_list")
     room = document.createElement("a")
+<<<<<<< HEAD
     room.classList.add('list-item', 'room_button')
+=======
+    room.classList.add('list-item')
+>>>>>>> d4a46fee14c33f37b14a30c469b24995b37b048f
     room.setAttribute('data-room_id', data['game_id'])
     room.innerHTML = data['game_name']
     rooms.appendChild(room)
