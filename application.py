@@ -28,7 +28,18 @@ GAME_ROOMS = {}
 
 @app.route("/")
 def index():
-    return render_template("homepage.html")
+    if request.method == 'POST':
+        # Make sure a user put in a username
+        if not request.form.get('username'):
+            return render_template('homepage.html')
+
+        username = request.form.get('username')
+        return render_template("game-lobby.html")
+    
+    else:
+        return render_template('homepage.html')
+        
+
 
 @app.route('/test')
 def test():
@@ -38,6 +49,9 @@ def test():
 def game_lobby():
     return render_template("game-lobby.html")
 
+@app.route("/floep")
+def floep():
+    return render_template("spelding.html")
 
 @socketio.on('username')
 def create_user_ses():
