@@ -104,6 +104,10 @@ a.no_style {
   filter: brightness(92%);
 }
 
+.room_buttons{
+  color: black;
+}
+
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -153,9 +157,6 @@ a.no_style {
 
 #room_list{
   background-color: rgb(32, 126, 189);
-}
-
-.room_buttons{
   color: black;
 }
 
@@ -163,4 +164,8 @@ a.no_style {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#joinGame {
+  margin-top: 5px;
 }
