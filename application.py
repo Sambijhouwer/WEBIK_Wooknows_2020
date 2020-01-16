@@ -38,7 +38,7 @@ def index():
 
 @app.route("/floep")
 def floep():
-    return render_template("spelding.html")
+    return render_template("game-lobby.html")
 
 @socketio.on('username')
 def create_user_ses(data):

@@ -23,16 +23,17 @@
                 <div class="input-is-hovered">
                   <input class="input" type="text" placeholder="username">
                 </div>
-
-                <!-- Greet User -->
-                {% else %}
-                <p class="title">Welcome {{ session['username'] }}</p>
-                {% endif %}
-              </div>
-              <div class="container is-fluid">
-                <button class="button is-success is-medium">Go!</button>
               </div>
             </div>
+            
+            <!-- Greet User -->
+            {% else %}
+            <p class="title">Welcome {{ session['username'] }}</p>
+            {% endif %}
+            <div class="container is-fluid">
+              <button class="button is-success is-medium">Go!</button>
+            </div>
+            
           </div>
         </article>
       </div>
@@ -65,7 +66,7 @@
       <p class="title">Available rooms</p>
       <div class="container is-fluid">
         <div class="list is-hoverable" id="room_list">
-          <!-- Room List -->
+          <!-- Room List Is Inserted Here -->
         </div>
       </div>
       <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
