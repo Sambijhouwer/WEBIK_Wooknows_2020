@@ -4,10 +4,14 @@
 <div class="container is-fluid">
 <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
+        
+        <!-- Room information tile -->
         <div class="tile is-child box" id="room_info">
             <p class="title">Room...</p>
             <p class="subtitle">information</p>
         </div>
+        
+        <!-- Player scoreboard tile -->
         <div class="tile is-child box" id="room_board">
             <p class="title">Player list</p>
             <p style="text-align: justify;">Names Score</p>
@@ -18,31 +22,45 @@
             </ul>
             <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
         </div>
+
+        <!-- Ready Up tile -->
         <div class="tile is-child box" id="room_ready">
             <p class="subtitle">Ready up for the game to start</p>
-            <!-- <form action="/foobar" method="post"> -->
-                <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
-            <!-- </form> -->
+            <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
         </div>
     </div>
+
+    <!-- Tile which holds Q&A -->
     <div class="tile" id="questionbox">
         <article class="tile notification is-vertical" id="QnA_container">
+            
+            <!-- Question -->
             <div class="content">
                 <p class="title" style="text-align: center;">What is the largest fish in the world?</p>
             </div>
+
+            <!-- Answers -->
             <div class="tile">
                 <div class="tile is-parent is-vertical">
+
+                    <!-- Option A -->
                     <div class="tile is-child is-info box">
                         <p class="subtitle">A whale shark</p>
                     </div>
+
+                    <!-- Option C -->
                     <div class="tile is-child is-primary box">
                         <p class="subtitle">A great white shark</p>
                     </div>
                 </div>
                 <div class="tile is-parent is-vertical">
+
+                    <!-- Option B -->
                     <div class="tile is-child is-danger box">
                         <p class="subtitle">A blue whale</p>
                     </div>
+
+                    <!-- Option D -->
                     <div class="tile is-child is-warning box">
                         <p class="subtitle">An angler fish</p>
                     </div>
@@ -53,6 +71,7 @@
     </div>
 </div>
 
+<!-- Modal which holds choosable categories -->
 <div class="modal" id="myModal">
     <div class="modal-background"></div>
     <div class="modal-content">
@@ -65,6 +84,7 @@
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 </div>
+
 {{ info }}
   <script> 
   document.querySelectorAll('.modal-button').forEach(function(el) {

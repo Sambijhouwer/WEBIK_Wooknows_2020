@@ -26,6 +26,8 @@
                   <button class="button is-success is-medium" id="userbutton">Go!</button>
                 </div>
               </div>
+
+            <!-- Greet user -->
             {% else %}
               <p class="title">Welcome {{ session['username'] }}</p>
             {% endif %}
@@ -55,20 +57,20 @@
   </div>
 
   
-  <!-- Blue Join Room List Tile -->
+  <!-- Blue join room list tile -->
   <div class="tile is-parent">
     <article class="tile is-child notification is-info" style="text-align: center;">
       <p class="title">Available rooms</p>
       <div class="container is-fluid">
         <div class="list is-hoverable" id="room_list">
-          <!-- Room List -->
+          <!-- Room list is inserted here -->
         </div>
       </div>
       <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
     </article>
   </div>
 
-  <!-- Green How To Play Section -->
+  <!-- Green how to play section -->
   <div class="tile is-parent">
     <article class="tile is-child notification is-success">
       <div class="content">
