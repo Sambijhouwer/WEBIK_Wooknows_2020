@@ -7,7 +7,7 @@ html, body{
   padding: 0;
 }
 
-/* dit is een comment om te kijken of pull werkt */
+/* dit is een comment om te kijken of pull werkt test */
 
 a.no_style {
   text-decoration-line: none;
@@ -104,6 +104,10 @@ a.no_style {
   filter: brightness(92%);
 }
 
+.room_buttons{
+  color: black;
+}
+
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -153,14 +157,30 @@ a.no_style {
 
 #room_list{
   background-color: rgb(32, 126, 189);
+  max-height: 200px; 
+  width: 100%;
+  overflow: hidden; 
+  overflow-y: scroll;
 }
 
 .room_buttons{
   color: black;
+  font-size: normal;
+  border-color: rgb(32, 126, 170);
+  background-color: rgb(32, 126, 189)
+  
 }
 
 #owl_homepage {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#joinGame {
+  margin-top: 5px;
+}
+
+.room_score {
+  padding-left: 200px;
 }

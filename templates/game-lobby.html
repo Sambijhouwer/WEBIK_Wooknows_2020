@@ -11,11 +11,10 @@
         <div class="tile is-child box" id="room_board">
             <p class="title">Player list</p>
             <p style="text-align: justify;">Names Score</p>
-            <ul>
-                <li>_____<span style="padding-left: 200px;">...</span></li>
-                <li>_____<span style="padding-left: 200px;">...</span></li>
-                <li>_____<span style="padding-left: 200px;">...</span></li>
-                <li>_____<span style="padding-left: 200px;">...</span></li>
+            <ul id="scoreboard">
+                {% for player in info.players %}
+                <li>{{ player }}<span class="room_score">{{ info.scores[player] }}</span></li>
+                {% endfor %}
             </ul>
             <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
         </div>
@@ -55,8 +54,8 @@
 </div>
 
 <div class="modal" id="myModal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
+    <div class="modal-background is_info"></div>
+    <div class="modal-content is info">
       <div class="buttons has-addons is-centered is-large">
         <button class="button is-danger" id="category" value="{{ category }}">{{ category }}</button>
         <button class="button is-link" id="category" value="{{ category }}">{{ category }}</button>
