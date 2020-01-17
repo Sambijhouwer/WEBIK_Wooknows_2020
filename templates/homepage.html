@@ -4,35 +4,31 @@
 <div class="container is-fluid">
 <div class="tile is-ancestor">
   
-  <!-- Left Pair Of Yellow And Red Tiles -->
+  <!-- Left pair of yellow and red tiles -->
   <div class="tile is-vertical is-4">
-    
-    <!-- Yellow Username Tile -->
+
+    <!-- Yellow username tile -->
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child notification is-warning" style="text-align: center;">
           <div class="container is-fluid">
-            
-            <!-- Let User Pick Username -->
             {% if not session['user_id'] %}
-            <p class="title">Join</p>
-            <p class="subtitle">choose your username</p>
-            <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
-            <div class="container is-fluid">
-              <div class="field">
-                <div class="input-is-hovered">
-                  <input class="input" type="text" placeholder="username">
-                </div>
-
-                <!-- Greet User -->
-                {% else %}
-                <p class="title">Welcome {{ session['username'] }}</p>
-                {% endif %}
-              </div>
+              <p class="title">Join</p>
+              <p class="subtitle">choose your username</p>
+              <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
               <div class="container is-fluid">
-                <button class="button is-success is-medium">Go!</button>
+                <div class="field">
+                  <div class="input-is-hovered">
+                    <input class="input" type="text" placeholder="username" id="usertext">
+                  </div>
+                </div>
+                <div class="container is-fluid">
+                  <button class="button is-success is-medium" id="userbutton">Go!</button>
+                </div>
               </div>
-            </div>
+            {% else %}
+              <p class="title">Welcome {{ session['username'] }}</p>
+            {% endif %}
           </div>
         </article>
       </div>
@@ -56,8 +52,8 @@
         </div>
       </article>
     </div>
-
   </div>
+
   
   <!-- Blue Join Room List Tile -->
   <div class="tile is-parent">
