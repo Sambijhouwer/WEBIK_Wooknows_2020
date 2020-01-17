@@ -39,6 +39,10 @@ def test():
 @app.route("/game")
 def game_lobby():
     return render_template("game-lobby.html")
+
+@app.route("/spelding")
+def spel_ding():
+    return render_template("spelding.html")
     
 @socketio.on('username')
 def create_user_ses():
