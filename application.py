@@ -40,6 +40,13 @@ def test():
 def game_lobby():
     return render_template("game-lobby.html")
 
+<<<<<<< HEAD
+=======
+@app.route("/spelding")
+def spel_ding():
+    return render_template("spelding.html")
+    
+>>>>>>> 9fa40386b1a97681df400b0367294739be4b540d
 @socketio.on('username')
 def create_user_ses():
     session['user_id'] = request.sid
