@@ -159,8 +159,12 @@ a.no_style {
   background-color: rgb(32, 126, 189);
   max-height: 200px; 
   width: 100%;
-  overflow: hidden; 
-  overflow-y: scroll;
+  overflow: auto;
+  color: black;
+
+  border-color: black;
+  border-width: 1.1px;
+  border-style: solid;
 }
 
 .room_buttons{
