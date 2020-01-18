@@ -157,7 +157,7 @@ a.no_style {
 
 #room_list{
   background-color: rgb(32, 126, 189);
-  max-height: 200px; 
+  max-height: 300px; 
   width: 100%;
   overflow: auto;
   color: black;
