@@ -24,6 +24,7 @@ class info(object):
         else:
             self.players.append(name)
             self.scores[name] = 0
+            self.ready[name] = False
             return True
 
     def remove_player(self, name):
@@ -32,11 +33,9 @@ class info(object):
         self.scores.pop(name)
 
     def ready_up(self, name):
-        try:
-            self.ready[name] = not self.ready[name] 
-        except:
-            self.ready[name] = True
-        if all(self.ready.values()):
+        """Ready ups player"""
+        self.ready[name] = not self.ready[name] 
+        if all(self.ready.values()) and len(self.players) > 1:
             return True
         else:
             return False
@@ -53,7 +52,8 @@ class info(object):
             'scores': self.scores,
             'questions': self.questions,
             'quizmaster': self.quizmaster,
-            'game_id': self.game_id
+            'game_id': self.game_id,
+            'ready': self.ready
         }
 
     @classmethod

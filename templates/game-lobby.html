@@ -1,27 +1,24 @@
-{% extends 'layout.html' %}
-{% block title %}Game Lobby{% endblock %}
-{% block main %}
+
 <div class="container is-fluid">
 <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
         <div class="tile is-child box" id="room_info">
-            <p class="title">Room...</p>
-            <p class="subtitle">information</p>
+            <p class="title">Room: {{ info.game_name }}</p>
+            <p class="subtitle"></p>
         </div>
         <div class="tile is-child box" id="room_board">
             <p class="title">Player list</p>
             <p style="text-align: justify;">Names Score</p>
             <ul id="scoreboard">
                 {% for player in info.players %}
-                <li>{{ player }}<span class="room_score">{{ info.scores[player] }}</span></li>
+                <li><span>{{ player }}</span><span class="room_score">{{ info.scores[player] }}</span></li>
                 {% endfor %}
             </ul>
-            <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
         </div>
         <div class="tile is-child box" id="room_ready">
             <p class="subtitle">Ready up for the game to start</p>
             <!-- <form action="/foobar" method="post"> -->
-                <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
+                <button class="button is-success is-large is-fullwidth" id="Ready">READY!</button>
             <!-- </form> -->
         </div>
     </div>
@@ -66,17 +63,3 @@
   </div>
 </div>
 {{ info }}
-  <script> 
-  document.querySelectorAll('.modal-button').forEach(function(el) {
-    el.addEventListener('click', function() {
-      var target = document.querySelector(el.getAttribute('data-target'));
-      
-      target.classList.add('is-active');
-      
-      target.querySelector('.modal-close').addEventListener('click',   function() {
-          target.classList.remove('is-active');
-       });
-    });
-  });
-  </script>
-{% endblock %}

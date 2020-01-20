@@ -42,9 +42,9 @@ def floep():
 
 @socketio.on('username')
 def create_user_ses(data):
-    session.clear()
-    session['username'] = data['username']
+    session['username'] = 'Player 1'
     return True
+
 
 @socketio.on('createGame')
 def createGame(data):
@@ -65,8 +65,8 @@ def joinGame(data):
         if not GAME_ROOMS[room].add_player(session['username']):
             return False
         join_room(room)
-        emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())}, room=room)
-        emit("lobby_update", {'room': room}, room=room)
+        json_room = GAME_ROOMS[room].to_json()
+        emit("lobby", {'url': lobby_render(json_room), 'title':json_room }, room=room)
     else: 
         return False
 
@@ -76,7 +76,16 @@ def send_rooms():
 
 @socketio.on("lobbyupdate")
 def lobbyupdate(data):
-    emit("lobby", {'url': lobby_render(GAME_ROOMS[data['id']].to_json())}, room=room)
+    room = data['id']
+    emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())}, room=room)
+
+@socketio.on("ready")
+def ready(data):
+    user = data['user']
+    room = data['room_id']
+    GAME_ROOMS[room].ready_up(user)
+    json_room = GAME_ROOMS[room].to_json()
+    emit("lobby", {'url': lobby_render(json_room), 'title':json_room }, room=room)
 
 def lobby_render(info):
     return render_template("game-lobby.html", info=info)
