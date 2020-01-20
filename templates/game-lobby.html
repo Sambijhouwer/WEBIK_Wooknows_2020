@@ -1,33 +1,11 @@
 
 <div class="container is-fluid">
 <div class="tile is-ancestor">
-<<<<<<< HEAD
-    <div class="tile is-vertical is-3">
-        <div class="tile is-child box" id="room_info">
-            <p class="title">Room: {{ info.game_name }}</p>
-            <p class="subtitle"></p>
-        </div>
-        <div class="tile is-child box" id="room_board">
-            <p class="title">Player list</p>
-            <p style="text-align: justify;">Names Score</p>
-            <ul id="scoreboard">
-                {% for player in info.players %}
-                <li><span>{{ player }}</span><span class="room_score">{{ info.scores[player] }}</span></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="tile is-child box" id="room_ready">
-            <p class="subtitle">Ready up for the game to start</p>
-            <!-- <form action="/foobar" method="post"> -->
-                <button class="button is-success is-large is-fullwidth" id="Ready">READY!</button>
-            <!-- </form> -->
-        </div>
-=======
   <div class="tile is-vertical is-3">
         
     <!-- Room information tile -->
     <div class="tile is-child box" id="room_info">
-      <p class="title">Room...</p>
+      <p class="title">Room: {{ info.game_name }}</p>
       <p class="subtitle">information</p>
     </div>
         
@@ -41,7 +19,6 @@
         {% endfor %}
       </ul>
       <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
->>>>>>> 7100c99c569db704d26a4a236d71b96174a64b73
     </div>
 
     <!-- Ready Up tile -->
