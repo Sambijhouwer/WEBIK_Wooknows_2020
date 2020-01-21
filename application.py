@@ -29,8 +29,6 @@ def index():
     
     else:
         return render_template('homepage.html')
-        
-
 
 @app.route('/test')
 def test():

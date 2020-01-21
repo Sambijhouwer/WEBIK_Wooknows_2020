@@ -91,7 +91,7 @@ const joinGame = socket =>{
     })
 }
 
-const room_togle = (room) =>{
+const room_toggle = (room) =>{
     document.querySelectorAll("#room_list > a").forEach(e =>{
         if (e.innerHTML == room){
             e.classList.add('is-active');
@@ -125,6 +125,6 @@ const make_channel = (data) =>{
     rooms.appendChild(room)
     room.addEventListener('click', ()=>{
         localStorage.setItem("room", data['game_id'])
-        room_togle(data['game_name'])
+        room_toggle(data['game_name'])
     })
 }

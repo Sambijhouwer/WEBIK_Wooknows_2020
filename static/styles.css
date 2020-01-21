@@ -110,10 +110,12 @@ a.no_style {
 
 #logo1{
   font-size: 4vw;
+  padding-left: 5px;
   color: rgb(109, 110, 113)
 }
 #logo2{
-  font-size: 4vw; 
+  font-size: 4vw;
+  padding-left: 5px; 
   color: rgb(242, 175, 88);
 }
 #headerStyle{
@@ -156,20 +158,47 @@ a.no_style {
 }
 
 #room_list{
-  background-color: rgb(32, 126, 189);
+  border-radius: 10px;
   max-height: 300px; 
   width: 100%;
   overflow: auto;
   color: black;
-
-  border-color: black;
-  border-width: 1.1px;
-  border-style: solid;
+  text-decoration: none;
+  display: block;
+  overflow-y: scroll;
+  color: white;
+  font-size: larger;
 }
 
-.room_button{
-  font-style: black;
+#room_list::-webkit-scrollbar {
+  display: none !important;
+}
+
+
+.list-item.room_button{
+  background-color: rgb(36, 142, 213);
+  text-decoration: none !important;
+  color: white;
+  border-bottom: none;
+}
+
+.list-item.room_button:hover{
+  background-color: rgb(35, 137, 205);
+  text-decoration: none !important;
+  border-bottom: none;
+}
+
+.list-item.room_button.is-active{
+  background-color:rgb(34, 95, 206);
+  text-decoration: none !important;
+  display: block;
+  border-bottom: none;
+}
+
+.list-item{
+  font-style: red;
   font-size: normal;
+  text-decoration: none;
   border-color: rgb(32, 126, 170);
   background-color: rgb(32, 126, 189)
   
@@ -182,7 +211,11 @@ a.no_style {
 }
 
 #joinGame {
-  margin-top: 5px;
+  margin-top: 20px;
+}
+
+#JoinGame2 {
+  text-decoration: none !important;
 }
 
 .room_score {

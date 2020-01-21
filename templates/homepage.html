@@ -24,36 +24,11 @@
                 </div>
                   <button class="button is-success is-medium" id="userbutton">Go!</button>
               </div>
-<<<<<<< HEAD
-            </div>
-            <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
-          </article>
-        </div>s
-      </centered>
-      </div>
-      <div class="tile is-child">
-        <article class="tile is-child is-6 notification is-danger">
-          <centered>
-          <p id="create_your_room" class="title">Create your own room!</p>
-        </centered>
-          <div class="content">
-            <div class="field is-grouped">
-              <p class= "control is-expanded">
-                <input class="input" type="text" placeholder="Create your own room" id='createGame_name'>
-              </p>
-              <p class="control">
-                <a class="button is-info" id="createGame">
-                  Create
-                </a>
-              </p>
-            </div>
-=======
 
             <!-- Greet user -->
             {% else %}
               <p class="title">Welcome {{ session['username'] }}</p>
             {% endif %}
->>>>>>> f774b329a8ead0fe84ae2ddef6d4885d49ba388b
           </div>
         </article>
       </div>
@@ -85,11 +60,11 @@
     <article class="tile is-child notification is-info" style="text-align: center;">
       <p class="title">Available quiz rooms</p>
       <div class="container is-fluid">
-        <div class="list is-hoverable" id="room_list">
+        <div id = "room_list">
           <!-- Room list is inserted here -->
         </div>
       </div>
-      <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
+      <button class="button is-warning is-medium" id="joinGame"><a id = "JoinGame2">Join!</a></button>
     </article>
   </div>
 
