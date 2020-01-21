@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.querySelector('#BODY').innerHTML = data.url
         let name = data.game['game_name']
         document.title = name
-        app.$mount('#Lobby')
     })
     app.socket.on("lobby_update", data =>{
         let id = localStorage.getItem('room')

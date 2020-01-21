@@ -158,7 +158,6 @@ a.no_style {
   max-height: 300px; 
   width: 100%;
   overflow: auto;
-  color: black;
   text-decoration: none;
   display: block;
   overflow-y: scroll;
@@ -171,34 +170,26 @@ a.no_style {
 }
 
 
-.list-item.room_button{
+#room_buttons {
   background-color: rgb(36, 142, 213);
   text-decoration: none !important;
   color: white;
   border-bottom: none;
 }
 
-.list-item.room_button:hover{
+#room_buttons:hover{
   background-color: rgb(35, 137, 205);
   text-decoration: none !important;
   border-bottom: none;
 }
 
-.list-item.room_button.is-active{
+#room_buttons.is-active{
   background-color:rgb(34, 95, 206);
   text-decoration: none !important;
   display: block;
   border-bottom: none;
 }
 
-.list-item{
-  font-style: red;
-  font-size: normal;
-  text-decoration: none;
-  border-color: rgb(32, 126, 170);
-  background-color: rgb(32, 126, 189)
-  
-}
 
 #owl_homepage {
   display: block;

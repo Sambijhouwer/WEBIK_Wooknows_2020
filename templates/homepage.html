@@ -1,5 +1,8 @@
 {% extends 'layout.html' %}
 {% block title %}homepage{% endblock %}
+{%  block script %}
+  <script src="{{ url_for('static',filename='index.js') }}"></script>
+{% endblock %}
 {% block main %}
 <p v-if="errors.length">
   <ul>
@@ -81,7 +84,7 @@
              >[[ room.game_name ]]</a>
           </div>
         </div>
-        <button class="button is-warning is-medium" v-on:click="join_room">Join</button>
+        <button id="joinGame" class="button is-warning is-medium" v-on:click="join_room">Join</button>
       </div>
       <div v-else>
         <p class="title">Pick a name to join quiz rooms</p>
