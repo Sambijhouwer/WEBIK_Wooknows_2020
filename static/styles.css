@@ -159,8 +159,8 @@ a.no_style {
   background-color: rgb(39, 147,218);
 }
 
-.room_buttons{
-  color: black;
+.room_button{
+  font-style: black;
   font-size: normal;
   border-color: rgb(32, 126, 170);
   background-color: rgb(32, 126, 189)
