@@ -1,24 +1,50 @@
 {% extends 'layout.html' %}
 {% block title %}quizmaster{% endblock %}
 {% block main %}
-<button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">Launch example modal</button>
+<button class="button is-info modal-button" data-target="#myModal" aria-haspopup="true">Pick A Category!</button>
 
 <div class="modal" id="myModal">
   <div class="modal-background"></div>
-  <d iv class="modal-content">
+  <div class="modal-content">
     <div class="content">
-      <p>
-        Congrats! You are the quizmaster. <br>
-        Please pick one the listed categories.
-      </p>
+      <div class="tile is-parent is-vertical is-info notification">
+          <h3 style="color: white; text-align: center;">
+            Congrats! You are the quizmaster. <br>
+            Please pick one of the listed categories:
+          </h3>
+      
+      <!-- Category options -->
       <div class="buttons has-addons is-centered is-large">
-        <button class="button is-danger" id="category">category b <span>Center</span></button>
-        <button class="button is-link" id="category">category 2</button>
-        <button class="button is-warning" id="category">category 3</button>
+        <div class="tile is-parent is-vertical">
+
+          <!-- Category 1 -->
+          <div class="tile is-child">
+            <button class="button is-danger is-fullwidth" id="category">Nature And Science</button>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="tile is-child">
+            <button class="button is-link is-fullwidth" id="category">Entertainment: Video Games</button>
+          </div>
+        </div>
+        <div class="tile is-parent is-vertical">
+
+          <!-- Category 3 -->
+          <div class="tile is-child">
+            <button class="button is-warning is-fullwidth" id="category">Entertainment: Movies</button>
+          </div>
+
+          <!-- Category 4 -->
+          <div class="tile is-child">
+            <button class="button is-success is-fullwidth" id="category">General Knowledge</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<button class="modal-close is-large" aria-label="close"></button>
+  </div>
 </div>
 <script> 
 document.querySelectorAll('.modal-button').forEach(function(el) {

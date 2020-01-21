@@ -3,37 +3,28 @@
 {% block main %}
 <div class="container is-fluid">
 <div class="tile is-ancestor">
-    <div class="tile is-vertical is-8">
-      <div class="tile">
-        <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-warning" style="text-align: center;">
+  
+  <!-- Left pair of yellow and red tiles -->
+  <div class="tile is-vertical is-4">
+
+    <!-- Yellow username tile -->
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-warning" style="text-align: center;">
+            {% if not session['user_id'] %}
+              <p class="title">Join</p>
+              <p class="subtitle">Choose your username</p>
+              <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
               <div class="container is-fluid">
-                {% if not session['user_id'] %}
-                <p class="title">Join</p>
-                <p class="subtitle">choose your username</p>
-                <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
-                <div class="container is-fluid">
-                  <div class="field">
-                    <div class="input-is-hovered">
-                      <input class="input" type="text" placeholder="username" id="usertext">
-                    </div>
-                  </div>
-                  <div class="container is-fluid">
-                    <button class="button is-success is-medium" id="userbutton">Go!</button>
+              <div class="container is-fluid">
+                <div class="field">
+                  <div class="input-is-hovered">
+                    <input class="input" type="text" placeholder="Username" id="usertext">
                   </div>
                 </div>
-                {% else %}
-                <p class="title">Welcome {{ session['username'] }}</p>
-                {% endif %}
+                  <button class="button is-success is-medium" id="userbutton">Go!</button>
               </div>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-info" style="text-align: center;">
-            <p class="title">Available rooms</p>
-            <div class="container is-fluid">
-              <div class="list is-hoverable" id="room_list">
-              </div>
+<<<<<<< HEAD
             </div>
             <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
           </article>
@@ -56,23 +47,66 @@
                 </a>
               </p>
             </div>
+=======
+
+            <!-- Greet user -->
+            {% else %}
+              <p class="title">Welcome {{ session['username'] }}</p>
+            {% endif %}
+>>>>>>> f774b329a8ead0fe84ae2ddef6d4885d49ba388b
           </div>
         </article>
       </div>
     </div>
+
+    <!-- Red create room tile -->
     <div class="tile is-parent">
-      <article class="tile is-child notification is-success">
+      <article class="tile is-child notification is-danger">
+        <centered>
+          <p id="create_your_room" class="title"><a href="/spelding"> Create</a> your own room!</p>
+        </centered>
         <div class="content">
-          <p class="title">How to play</p>
-          <p class="subtitle">After you've chosen a unique username, you can join or create a game room. <br>
-            2-4 players fit in one room. <br>
-            A quizmaster will be selected at random. This person gets to choose the category for the coming questions. <br>
-            The amount of questions with this category are also random. <br>
-            You score points based on the speed on which you answer. The person with the moist points wins!
-          </p>
+          <div class="field is-grouped">
+            <p class= "control is-expanded">
+              <input class="input" type="text" placeholder="Create your own room" id='createGame_name'>
+            </p>
+            <p class="control">
+              <a class="button is-info" id="createGame">Create</a>
+            </p>
+          </div>
         </div>
       </article>
     </div>
   </div>
+
+  
+  <!-- Blue join room list tile -->
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-info" style="text-align: center;">
+      <p class="title">Available quiz rooms</p>
+      <div class="container is-fluid">
+        <div class="list is-hoverable" id="room_list">
+          <!-- Room list is inserted here -->
+        </div>
+      </div>
+      <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
+    </article>
+  </div>
+
+  <!-- Green how to play section -->
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-success">
+      <div class="content">
+        <p class="title">How to play</p>
+        <p class="subtitle">After you've chosen a unique username, you can join or create a game room. <br>
+          2-4 players fit in one room. <br>
+          A quizmaster will be selected at random. This person gets to choose the category for the coming questions. <br>
+          The amount of questions with this category are also random. <br>
+          You score points based on the speed on which you answer. The person with the most points wins!
+        </p>
+      </div>
+    </article>
+  </div>
+</div>
 </div>
 {% endblock %}
