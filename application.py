@@ -6,50 +6,30 @@ from flask_socketio import SocketIO, emit, send, join_room
 import Game
 #sys.path.append(os.getcwd())
 
-
 # Configure application
 app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['SECRET_KEY'] = 'secret'
-socketio = SocketIO(app)
+params = {
+    'ping_timeout': 30,
+    'ping_interval': 15
+}
+socketio = SocketIO(app, **params)
 
 GAME_ROOMS = {}
-
+USER_LOCATIONS = {}
+# Home page
 @app.route("/")
 def index():
-    if request.method == 'POST':
-        # Make sure a user put in a username
-        if not request.form.get('username'):
-            return render_template('homepage.html')
+    return render_template('homepage.html')
 
-        username = request.form.get('username')
-        return render_template("game-lobby.html")
-    
-    else:
-        return render_template('homepage.html')
-        
+@socketio.on('disconnect')
+def disconnect():
+    pass
 
-
-@app.route('/test')
-def test():
-    return render_template("test.html")
-
-@app.route("/game")
-def game_lobby():
-    return render_template("game-lobby.html")
-
-@app.route("/spelding")
-def spel_ding():
-    return render_template("spelding.html")
-    
-@socketio.on('username')
-def create_user_ses():
-    session['user_id'] = request.sid
-    return
-
-
+# Create Game object 
 @socketio.on('createGame')
 def createGame(data):
     gm = Game.info(data['name'])
@@ -58,20 +38,23 @@ def createGame(data):
     emit('join_room', {'room': GAME_ROOMS[room].to_json()})
     emit('new_room', {'room': GAME_ROOMS[room].to_json()}, broadcast=True)
 
+# Join Game object
 @socketio.on('joinGame')
 def joinGame(data):
     room = data['room_id']
     if room in GAME_ROOMS:
-        GAME_ROOMS[room].add_player(session['user_id'])
+        GAME_ROOMS[room].add_player(data['name'])
         join_room(room)
         json_room = GAME_ROOMS[room].to_json()
-        emit("lobby", {'url': lobby_render(json_room), 'title':json_room }, room=room)
+        emit("lobby", {'url': render_template("game-lobby.html"), 'game': json_room }, room=room)
     else: 
         return False
 
-@socketio.on('get rooms')
+# Send all rooms to client
+@socketio.on('get_rooms')
 def send_rooms():
     emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
+
 
 @socketio.on("lobbyupdate")
 def lobbyupdate(data):
