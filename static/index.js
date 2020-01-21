@@ -11,7 +11,6 @@ const init = ()=>{
 
         socket.on('join_room', data =>{
             room_id = data.room['game_id']
-            localStorage.setItem('room', room_id)
             socket.emit('joinGame', {room_id})
         })
         socket.on('new_room', data =>{
@@ -23,15 +22,16 @@ const init = ()=>{
             }
         })
         socket.on("lobby", data =>{
-            document.querySelector('#BODY').innerHTML = data.url
-            let name = data.title['game_name']
-            document.title = name
-            history.pushState({'title': name, 'text': data.url}, name, name);
-            readyGame(socket);
+            document.open();
+            document.write(data.url);
+            document.close();
         })
         socket.on("lobby_update", data =>{
-            let id = localStorage.getItem('room')
+            let id = data['game_id']
             socket.emit('lobbyupdate', {id})
+        })
+        socket.on("error", data =>{
+            return
         })
     })
     
@@ -100,18 +100,6 @@ const room_toggle = (room) =>{
         }
     })
 } 
-
-const readyGame = socket =>{
-    button = document.querySelector("#Ready")
-    if (!button){
-        return true
-    }
-    user = 'Player 1'
-    room_id = localStorage.getItem('room')
-    button.addEventListener("click", () =>{
-        socket.emit("ready", {user, room_id})
-    })
-}
 
 const make_channel = (data) =>{
     rooms = document.querySelector("#room_list")
