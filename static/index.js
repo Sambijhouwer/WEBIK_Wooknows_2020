@@ -86,15 +86,16 @@ const init = ()=>{
     socket.on("connect", () =>{
         setup(socket);
         socket.on("lobby", data =>{
-            document.querySelector('#BODY').innerHTML = data.url
-            let name = data.title['game_name']
-            document.title = name
-            history.pushState({'title': name, 'text': data.url}, name, name);
-            readyGame(socket);
+            document.open();
+            document.write(data.url);
+            document.close();
         })
         socket.on("lobby_update", data =>{
-            let id = localStorage.getItem('room')
+            let id = data['game_id']
             socket.emit('lobbyupdate', {id})
+        })
+        socket.on("error", data =>{
+            return
         })
     })
     
