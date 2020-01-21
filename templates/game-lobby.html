@@ -1,4 +1,3 @@
-
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
@@ -20,6 +19,7 @@
 
       <!-- Ready Up tile -->
       <div class="tile is-child box" id="room_ready">
+        <button class="button is-info modal-button" v-on:click="modalActive = true">Pick A Category!</button>
         <p class="subtitle">Ready up for the game to start</p>
         <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
       </div>
@@ -75,17 +75,47 @@
   </div>
 
   <!-- Modal which holds choosable categories -->
-  <div class="modal" id="mynModal">
-    <div class="modal-background"></div>
-    <div class="modal-content is-info">
-      <div class = "tile is-parent is-danger">
-        <div class="buttons has-addons is-centered is-large">
-          <button class="button is-danger" id="category" value="{{ category }}">{{ category }}</button>
-          <button class="button is-link" id="category" value="{{ category }}">{{ category }}</button>
-          <button class="button is-warning" id="category" value="{{ category }}">{{ category }}</button>
+  
+    <div class="modal" id="myModal" v-bind:class="{'is-active': modalActive === true}">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="content">
+          <div class="tile is-parent is-vertical is-info notification">
+              <h3 style="color: white; text-align: center;">
+                Congrats! You are the quizmaster. <br>
+                Please pick one of the listed categories:
+              </h3>
+          
+          <!-- Category options -->
+          <div class="buttons has-addons is-centered is-large">
+            <div class="tile is-parent is-vertical">
+    
+              <!-- Category 1 -->
+              <div class="tile is-child">
+                <button class="button is-danger is-fullwidth" id="category">Nature And Science</button>
+              </div>
+    
+              <!-- Category 2 -->
+              <div class="tile is-child">
+                <button class="button is-link is-fullwidth" id="category">Entertainment: Video Games</button>
+              </div>
+            </div>
+            <div class="tile is-parent is-vertical">
+    
+              <!-- Category 3 -->
+              <div class="tile is-child">
+                <button class="button is-warning is-fullwidth" id="category">Entertainment: Movies</button>
+              </div>
+    
+              <!-- Category 4 -->
+              <div class="tile is-child">
+                <button class="button is-success is-fullwidth" id="category">General Knowledge</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-  </div>
-{{ info }}
+    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = false"></button> <!-- deze moet weg -->
+      </div>
+    </div>

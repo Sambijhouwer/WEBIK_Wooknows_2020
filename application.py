@@ -82,7 +82,7 @@ def ready(data):
     emit("lobby", {'url': lobby_render(json_room), 'title':json_room }, room=room)
 
 def lobby_render(info):
-    return render_template("game-lobby.html", info=info)
+    return render_template("game-lobby.html")
 
 def errorhandler(e):
     """Handle error"""
