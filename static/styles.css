@@ -104,10 +104,6 @@ a.no_style {
   filter: brightness(92%);
 }
 
-.room_buttons{
-  color: black;
-}
-
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -167,11 +163,12 @@ a.no_style {
   border-style: solid;
 }
 
-.room_buttons{
+#room_buttons{
   color: black;
   font-size: normal;
-  border-color: rgb(32, 126, 170);
-  background-color: rgb(32, 126, 189)
+  /* border-color: rgb(32, 126, 170);
+  background-color: rgb(32, 126, 189); */
+  text-decoration: none;
   
 }
 

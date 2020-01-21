@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 {% block title %}homepage{% endblock %}
 {% block main %}
+<p v-if="errors.length">
+  <ul>
+    <li v-for="error in errors">[[ error ]]</li>
+  </ul>
+</p>
 <div class="container is-fluid">
 <div class="tile is-ancestor">
   
@@ -11,7 +16,7 @@
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child notification is-warning" style="text-align: center;">
-            {% if not session['user_id'] %}
+            <div v-if='picked'>
               <p class="title">Join</p>
               <p class="subtitle">Choose your username</p>
               <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
@@ -19,17 +24,18 @@
               <div class="container is-fluid">
                 <div class="field">
                   <div class="input-is-hovered">
-                    <input class="input" type="text" placeholder="Username" id="usertext">
+                    <input class="input" type="text" placeholder="Username" v-model="username">
                   </div>
                 </div>
-                  <button class="button is-success is-medium" id="userbutton">Go!</button>
+                  <button class="button is-success is-medium" v-on:click="get_user">Go!</button>
+                </div>
               </div>
-
+            </div>
             <!-- Greet user -->
-            {% else %}
-              <p class="title">Welcome {{ session['username'] }}</p>
-            {% endif %}
-          </div>
+            <div v-else>
+              <p class="title">Welcome [[ username ]]</p>
+            </div>
+          </template>
         </article>
       </div>
     </div>
@@ -37,18 +43,21 @@
     <!-- Red create room tile -->
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <centered>
-          <p id="create_your_room" class="title"><a href="/spelding"> Create</a> your own room!</p>
-        </centered>
-        <div class="content">
-          <div class="field is-grouped">
-            <p class= "control is-expanded">
-              <input class="input" type="text" placeholder="Create your own room" id='createGame_name'>
-            </p>
-            <p class="control">
-              <a class="button is-info" id="createGame">Create</a>
-            </p>
+        <div v-if="picked == false">
+          <p id="create_your_room" class="title">Create your own room!</p>
+          <div class="content">
+            <div class="field is-grouped">
+              <p class= "control is-expanded">
+                <input class="input" type="text" placeholder="Create your own room" v-model.trim="game_name">
+              </p>
+              <p class="control">
+                <a class="button is-info" v-on:click="make_room">Create</a>
+              </p>
+            </div>
           </div>
+        </div>
+        <div v-else>
+          <p id="create_your_room" class="title">Pick a name to create a room</p>
         </div>
       </article>
     </div>
@@ -58,13 +67,25 @@
   <!-- Blue join room list tile -->
   <div class="tile is-parent">
     <article class="tile is-child notification is-info" style="text-align: center;">
-      <p class="title">Available quiz rooms</p>
-      <div class="container is-fluid">
-        <div class="list is-hoverable" id="room_list">
-          <!-- Room list is inserted here -->
+      <div v-if="picked == false">
+        <p class="title">Available quiz rooms</p>
+        <div class="container is-fluid">
+          <div class="list is-hoverable" id="room_list">
+            <!-- Room list is inserted here -->
+            <a 
+            class="list-item"
+             id="room_buttons" 
+             v-for="room in rooms"
+             v-bind:class="{'is-active': room.game_id === Active_Room}"
+             v-on:click="Active_Room = room.game_id"
+             >[[ room.game_name ]]</a>
+          </div>
         </div>
+        <button class="button is-warning is-medium" v-on:click="join_room">Join</button>
       </div>
-      <button class="button is-warning is-medium" id="joinGame"><a>Join!</a></button>
+      <div v-else>
+        <p class="title">Pick a name to join quiz rooms</p>
+      </div>
     </article>
   </div>
 

@@ -1,27 +1,90 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-    init();
+    var app = new Vue({
+        el: '#BODY',
+        data: {
+            socket: io.connect(
+                location.protocol + "//" + document.domain + ":" + location.port
+            ),
+            username: '',
+            rooms: [],
+            game: {},
+            picked: true,
+            game_name: '',
+            errors: [],
+            Active_Room: undefined,
+        },
+        delimiters: ['[[',']]'],
+        methods: {
+            get_user: function (){
+                if (this.username != ''){
+                    this.errors = []
+                    this.picked = false
+                }
+                else{
+                    this.errors.push('Fill in a valid name')
+                }
+            },
+            make_room: function (){
+                if (this.game_name != ''){
+                    this.errors = []
+                    this.socket.emit('createGame', {'name':this.game_name})
+                }
+                else{
+                   this.errors.push("Fill in a valid name")
+                }
+            },
+            join_room: function (){
+                if (this.Active_Room != undefined){
+                    this.socket.emit('joinGame', {'name': this.username, 'room_id': this.Active_Room})
+                }
+                else{
+                    this.errors.push("Please pick a room")
+                }
+            }
+        }
+    })
+
+    // Connection made, get already made rooms
+    app.socket.on("connect", () =>{
+        app.socket.emit('get_rooms')
+        return true
+    })
+
+    // On connection, import rooms from data
+    app.socket.on('all_rooms', data =>{
+        app.rooms = data
+    })
+
+    // Autojoin room after creating one 
+    app.socket.on('join_room', data =>{
+        room_id = data.room['game_id']
+        app.socket.emit('joinGame', {'room_id':room_id, 'name': app.username})
+    })
+
+    // Update rooms @ new room
+    app.socket.on('new_room', data =>{
+        app.rooms.push(data['room'])
+    })
+
+    // First Lobby join
+    app.socket.on("lobby", data =>{
+        app.game = data.game
+        document.querySelector('#BODY').innerHTML = data.url
+        let name = data.game['game_name']
+        document.title = name
+        app.$mount('#Lobby')
+    })
+    app.socket.on("lobby_update", data =>{
+        let id = localStorage.getItem('room')
+        app.socket.emit('lobbyupdate', {id})
+    })
 })
 
 const init = ()=>{   
-    let socket = io.connect(
-        location.protocol + "//" + document.domain + ":" + location.port
-      );
+
+    
     socket.on("connect", () =>{
         setup(socket);
-
-        socket.on('join_room', data =>{
-            room_id = data.room['game_id']
-            localStorage.setItem('room', room_id)
-            socket.emit('joinGame', {room_id})
-        })
-        socket.on('new_room', data =>{
-            make_channel(data)
-        })
-        socket.on('all_rooms', data =>{
-            for (room of data){
-                make_channel(room)
-            }
-        })
         socket.on("lobby", data =>{
             document.querySelector('#BODY').innerHTML = data.url
             let name = data.title['game_name']
@@ -36,70 +99,6 @@ const init = ()=>{
     })
     
 }
-const setup = socket =>{
-    createGame(socket);
-    joinGame(socket);
-    username(socket);
-    socket.emit('get rooms');
-}
-const createGame = socket =>{
-    button = document.querySelector("#createGame")
-    if (!button){
-        return true
-    }
-    button.addEventListener("click", ()=>{
-        name = document.querySelector("#createGame_name").value
-        if (name == ""){
-            return false
-        }
-        document.querySelector("#createGame_name").value = ""
-        console.log("Creating game...");
-        socket.emit('createGame', {name});
-    }) 
-}
-
-const username = socket =>{
-    let username = localStorage.getItem('username')
-    if (username){
-        socket.emit('username', {username})
-        return true
-    }
-    let button = document.querySelector("#userbutton")
-    if (!button){
-        return true
-    }
-    button.addEventListener("click", ()=>{
-        username = document.querySelector("#usertext").value.trim()
-        if (username != ""){
-            localStorage.setItem("username", username)
-            socket.emit('username', {username})
-        }
-    })    
-}
-
-const joinGame = socket =>{
-    button = document.querySelector("#joinGame")
-    if (!button){
-        return true
-    }
-    button.addEventListener('click', ()=>{
-        let room_id = localStorage.getItem("room")
-        if (!room_id){
-            return
-        }
-        socket.emit("joinGame", {room_id} )
-    })
-}
-
-const room_togle = (room) =>{
-    document.querySelectorAll("#room_list > a").forEach(e =>{
-        if (e.innerHTML == room){
-            e.classList.add('is-active');
-        } else{
-            e.classList.remove("is-active")
-        }
-    })
-} 
 
 const readyGame = socket =>{
     button = document.querySelector("#Ready")
@@ -110,21 +109,5 @@ const readyGame = socket =>{
     room_id = localStorage.getItem('room')
     button.addEventListener("click", () =>{
         socket.emit("ready", {user, room_id})
-    })
-}
-
-const make_channel = (data) =>{
-    rooms = document.querySelector("#room_list")
-    if (!rooms){
-        return true
-    }
-    room = document.createElement("a")
-    room.classList.add('list-item', 'room_button')
-    room.setAttribute('data-room_id', data['game_id'])
-    room.innerHTML = data['game_name']
-    rooms.appendChild(room)
-    room.addEventListener('click', ()=>{
-        localStorage.setItem("room", data['game_id'])
-        room_togle(data['game_name'])
     })
 }

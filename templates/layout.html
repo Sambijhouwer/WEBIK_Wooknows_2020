@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="/static/index.js"></script>
   </head>
   <body>
@@ -22,16 +23,10 @@
         </div>
       </div>
     </header>
-<<<<<<< HEAD
     <div id="BODY">
-      {% block main %}
-      {% endblock %}
+        {% block main %}
+        {% endblock %}
     </div>
     
-=======
-    {% block main %}
-    {% endblock %}
-
->>>>>>> 7100c99c569db704d26a4a236d71b96174a64b73
   </body>
 </html>
