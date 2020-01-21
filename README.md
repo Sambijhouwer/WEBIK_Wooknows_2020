@@ -48,7 +48,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 
 # concurrerende websites
 
-- kahoot
+- kahoot.com
 
 # Controllers
 
