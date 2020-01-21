@@ -188,3 +188,8 @@ a.no_style {
 .room_score {
   padding-left: 200px;
 }
+
+.naam{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: normal;
+}
