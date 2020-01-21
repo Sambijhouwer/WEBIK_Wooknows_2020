@@ -1,10 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}game lobby{% endblock %}
+{%  block script %}
+  <script src="{{ url_for('static',filename='lobby.js') }}"></script>
+{% endblock %}
+{% block main %}
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
           
       <!-- Room information tile -->
       <div class="tile is-child box" id="room_info">
-        <p class="title">[[ game.game_name ]]</p>
+        <p class="title">[[ username ]]</p>
         <p class="subtitle">information</p>
       </div>
           
@@ -13,7 +19,7 @@
         <p class="title">Player list</p>
         <p style="text-align: justify;">Names Score</p>
         <ul id="scoreboard">
-          <li v-for="player in game.players">[[ player ]]<span class="room_score">[[ game.scores[player] ]]</span></li>
+          <li v-for="player in game.players">[[ player ]]<span class="room_score">[[ room.scores[player] ]]</span></li>
         </ul>
       </div>
 
@@ -119,3 +125,6 @@
     <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = false"></button> <!-- deze moet weg -->
       </div>
     </div>
+  </div>
+{{ info }}
+{% endblock %}

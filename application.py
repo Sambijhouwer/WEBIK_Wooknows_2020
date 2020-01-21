@@ -25,6 +25,10 @@ USER_LOCATIONS = {}
 def index():
     return render_template('homepage.html')
 
+@app.route("/game")
+def game():
+    return render_template("game-lobby.html")
+
 @socketio.on('disconnect')
 def disconnect():
     pass
