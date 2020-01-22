@@ -42,13 +42,15 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 # Afhankelijkheden
 
 - bulma.io
-- bootstrap
 - opentdb.com
 - github
+- vuejs.org
+- flask(socket.io)
 
 # concurrerende websites
 
 - kahoot.com
+- vraevrae.nl
 
 # Controllers
 
@@ -67,4 +69,10 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
     https://socket.io/docs/
 - bulma
     https://bulma.io/documentation/
+- Vue
+    https://vuejs.org/v2/guide/
+
+# schetsen
+![schets1](doc/schets1.png)
+![schets2](doc/schets2.png)
 
