@@ -1,8 +1,12 @@
+"""
+Waarschijnlijk alles wegkieperen
+"""
+
 import requests
 import random
 import json
 
-def questions (category, token = None):
+def helpersAPI (category, token = None):
     """Contacts API and retrieves questions + answers based on category"""
 
     # Als geen token is meegegeven, maak replacement voor debuggen

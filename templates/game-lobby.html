@@ -28,7 +28,7 @@
 
       <!-- Ready Up tile -->
       <div class="tile is-child box" id="room_ready">
-        <button class="button is-info modal-button" v-on:click="modalActive = true">Pick A Category!</button>
+        <button class="button is-info modal-button" v-on:click="modalActive = !modalActive">Pick A Category!</button>
         <p class="subtitle">Ready up for the game to start</p>
         <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
       </div>
@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = false"></button> <!-- deze moet weg -->
+    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = !modalActive"></button> <!-- deze moet weg -->
       </div>
     </div>
   </div>
