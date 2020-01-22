@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             game_name: '',
             errors: [],
             Active_Room: undefined,
+            modalActive: false,
+            counter: 0
         },
         delimiters: ['[[',']]'],
         methods: {

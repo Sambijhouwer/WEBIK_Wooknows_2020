@@ -1,3 +1,48 @@
+<template>
+  <div>
+    <header class="header" id="headerStyle">
+      <div class="container is-fluid">
+        <div class="level-left">
+          <router-link to="/">
+            <img src="https://i.ibb.co/Y34k3hV/logo-no.png" width="80" height="89" alt="logo">
+          </router-link>
+          <h1 id="logo1">Hoo&nbsp;</h1>
+          <h2 id="logo2">Knows</h2>
+        </div>
+      </div>
+    </header>
+    <router-view>
+    </router-view>
+  </div>
+</template>
+<script>
+import { mapMutations } from 'vuex'
+export default {
+  data () {
+    return {
+    }
+  },
+  sockets: {
+    lobby: function (data) {
+      this.set_game(data['game'])
+      this.$router.push('game')
+    },
+    spel: function (data) {
+      this.ask_categorie(data['categorie'])
+      this.set_game(data['game'])
+    },
+    questions: function (data) {
+      this.set_correct(data['answers'][0])
+      this.add_questions(data['question'])
+      this.shuffle_answers(data['answers'])
+    }
+  },
+  methods: {
+    ...mapMutations(['set_game', 'ask_categorie', 'add_questions', 'set_correct', 'shuffle_answers'])
+  }
+}
+</script>
+<style>
 html, body{
   background-color:#292861;
   position: absolute;
@@ -5,6 +50,8 @@ html, body{
   width: 100%;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a.no_style {
@@ -91,7 +138,7 @@ a.no_style {
   color: white;
   padding-top: 10%;
   text-align: center;
-  
+
   border-color: #155e28;
   border-width: 4px;
   border-style: solid;
@@ -104,17 +151,15 @@ a.no_style {
 
 #logo1{
   font-size: 4vw;
-  padding-left: 5px;
   color: rgb(109, 110, 113)
 }
 #logo2{
   font-size: 4vw;
-  padding-left: 5px; 
   color: rgb(242, 175, 88);
 }
 #headerStyle{
-  padding-top: 10px; 
-  padding-bottom: 10px; 
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #QnA_container {
@@ -152,42 +197,20 @@ a.no_style {
 }
 
 #room_list{
-  border-radius: 10px;
-  max-height: 300px; 
+  max-height: 200px;
   width: 100%;
-  overflow: auto;
-  text-decoration: none;
-  display: block;
+  overflow: hidden;
   overflow-y: scroll;
-  color: white;
-  font-size: larger;
+  background-color: rgb(39, 147,218);
 }
 
-#room_list::-webkit-scrollbar {
-  display: none !important;
+.room_buttons{
+  color: black;
+  font-size: normal;
+  border-color: rgb(32, 126, 170);
+  background-color: rgb(32, 126, 189)
+
 }
-
-
-#room_buttons {
-  background-color: rgb(36, 142, 213);
-  text-decoration: none !important;
-  color: white;
-  border-bottom: none;
-}
-
-#room_buttons:hover{
-  background-color: rgb(35, 137, 205);
-  text-decoration: none !important;
-  border-bottom: none;
-}
-
-#room_buttons.is-active{
-  background-color:rgb(34, 95, 206);
-  text-decoration: none !important;
-  display: block;
-  border-bottom: none;
-}
-
 
 #owl_homepage {
   display: block;
@@ -195,19 +218,7 @@ a.no_style {
   margin-right: auto;
 }
 
-#joinGame {
-  margin-top: 20px;
-}
-
-#JoinGame2 {
-  text-decoration: none !important;
-}
-
 .room_score {
   padding-left: 200px;
 }
-
-.naam{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-style: normal;
-}
+</style>
