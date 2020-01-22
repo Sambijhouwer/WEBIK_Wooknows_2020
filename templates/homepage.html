@@ -62,6 +62,7 @@
           </div>
           <div v-else>
             <p id="create_your_room" class="title">Pick a name to create a room</p>
+            <button class="button is-info modal-button" v-on:click="modalActive = !modalActive">Pick A Category!</button>
           </div>
         </article>
       </div>
@@ -102,12 +103,13 @@
             <p class="subtitle">3. A quizmaster will be selected at random. The quizmaster gets to choose the category for the coming questions.
             The amount of questions in this category are also random. </p>
             <p class="subtitle">4.You earn points by answering the questions correctly. The person with the most points wins!</p>
-            [[ modalActive ]]
+            [[ modalActive ]] <!--dit moet weg-->
         </div>
       </article>
     </div>
   </div>
 </div>
+<!-- modal shown when a person becomes quizmaster -->
 <div class="modal" id="myModal" v-bind:class="{'is-active': modalActive === true}">
   <div class="modal-background"></div>
   <div class="modal-content">
@@ -138,13 +140,6 @@
           <div class="tile is-child">
             <button class="button is-warning is-fullwidth" id="category">Entertainment: Movies</button>
           </div>
-        <button id="joinGame" class="button is-warning is-medium" v-on:click="join_room">Join</button>
-      </div>
-      <div v-else>
-        <p class="title">Pick a name to join quiz rooms</p>
-      </div>
-    </article>
-  </div>
 
           <!-- Category 4 -->
           <div class="tile is-child">
@@ -155,7 +150,6 @@
     </div>
   </div>
 </div>
-<button class="modal-close is-large" aria-label="close" v-on:click="modalActive = false"></button> <!-- deze moet weg -->
+<button class="modal-close is-large" aria-label="close" v-on:click="modalActive = !modalActive"></button> <!-- deze moet weg -->
   </div>
-<button class="button is-info modal-button" v-on:click="modalActive = !modalActive">Pick A Category!</button>
 {% endblock %}
