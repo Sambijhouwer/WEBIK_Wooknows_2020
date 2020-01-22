@@ -73,7 +73,10 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
     https://vuejs.org/v2/guide/
 
 # schetsen
+homepage before username
 ![homepage before username](doc/homepage1.png)
+homepage after username
 ![homepage after username](doc/homepage2.png)
+game lobby
 ![game lobby](doc/lobby.png)
 
