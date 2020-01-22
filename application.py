@@ -4,6 +4,8 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_socketio import SocketIO, emit, send, join_room
 import Game
+import random
+
 #sys.path.append(os.getcwd())
 
 # Configure application
@@ -74,7 +76,10 @@ def ready(data):
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
+<<<<<<< HEAD
         # start_game(GAME_ROOMS[room])
+=======
+>>>>>>> 45f40bc0a9d6f641fed114814dd9602ebd334673
         # Choose a quizmaster
         quizmaster = choose_quizmaster()
 
