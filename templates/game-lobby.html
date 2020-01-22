@@ -1,9 +1,3 @@
-{% extends 'layout.html' %}
-{% block title %}game lobby{% endblock %}
-{%  block script %}
-  <script src="{{ url_for('static',filename='lobby.js') }}"></script>
-{% endblock %}
-{% block main %}
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
@@ -127,4 +121,3 @@
     </div>
   </div>
 {{ info }}
-{% endblock %}
