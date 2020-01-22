@@ -135,10 +135,8 @@ class info(object):
         return True
 
     def play_round (self):
-        # Stuur naar game (vraag) = self.questions[0]
-        # Stuur naar game (antwoorden) = self.answers[0]
-        self.questions.remove(self.questions[0])
-        self.answers.remove(self.answers[0])
+        self.questions.pop()    # Stuur naar game (vraag)
+        self.answers.pop()    # Stuur naar game (antwoorden)
         # Stuur vragen en antwoorden naar game
         self.quizmaster_length -= 1
         pass
