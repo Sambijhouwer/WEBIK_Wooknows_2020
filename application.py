@@ -20,6 +20,8 @@ socketio = SocketIO(app, **params)
 
 GAME_ROOMS = {}
 USER_LOCATIONS = {}
+CATEGORIES = {9: 'General Knowledge', 10: 'Entertainment: Books', 11: 'Entertainment: Film', 12: 'Entertainment: Music', 13: 'Entertainment: Musicals & Theatres', 14: 'Entertainment: Television', 15: 'Entertainment: Video Games', 16: 'Entertainment: Board Games', 17: 'Science & Nature', 18: 'Science: Computers', 19: 'Science: Mathematics', 20: 'Mythology', 21: 'Sports', 22: 'Geography', 23: 'History', 24: 'Politics', 25: 'Art', 26: 'Celebrities', 27: 'Animals', 28: 'Vehicles', 29: 'Entertainment: Comics', 30: 'Science: Gadgets', 31: 'Entertainment: Japanese Anime & Manga', 32: 'Entertainment: Cartoon & Animations'}
+
 # Home page
 @app.route("/")
 def index():
@@ -65,12 +67,27 @@ def lobbyupdate(data):
     room = data['id']
     emit("lobby", {'url': lobby_render(GAME_ROOMS[room].to_json())}, room=room)
 
+# Ready ups user
+
 @socketio.on("ready")
 def ready(data):
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
+<<<<<<< HEAD
         # start_game(GAME_ROOMS[room])
+=======
+        # Choose a quizmaster
+        quizmaster = choose_quizmaster()
+
+        # Choose 4 categories for the quizmaster to pick from
+        categories = random.sample(range(9, 32), 4)
+        categories = {c : CATEGORIES[c] for c in categories}
+
+
+
+
+>>>>>>> 4ef1b4a6a25eb1816ecbf27cedf4c0e3f5bbf222
 
         # For now, just pass
         pass
