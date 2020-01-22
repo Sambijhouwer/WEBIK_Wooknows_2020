@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+{% extends 'layout.html' %}
+{% block script %}
+<script type="text/javascript" src="/static/lobby.js"></script>
+{% endblock %}
+{% block title %}Game Lobby{% endblock %}
+{% block main %}
+=======
+>>>>>>> 4ef1b4a6a25eb1816ecbf27cedf4c0e3f5bbf222
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
@@ -19,7 +28,7 @@
 
       <!-- Ready Up tile -->
       <div class="tile is-child box" id="room_ready">
-        <button class="button is-info modal-button" v-on:click="modalActive = true">Pick A Category!</button>
+        <button class="button is-info modal-button" v-on:click="modalActive = !modalActive">Pick A Category!</button>
         <p class="subtitle">Ready up for the game to start</p>
         <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
       </div>
@@ -116,7 +125,7 @@
         </div>
       </div>
     </div>
-    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = false"></button> <!-- deze moet weg -->
+    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = !modalActive"></button> <!-- deze moet weg -->
       </div>
     </div>
   </div>

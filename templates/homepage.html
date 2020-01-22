@@ -1,4 +1,7 @@
 {% extends 'layout.html' %}
+{% block script %}
+<script type="text/javascript" src="/static/index.js"></script>
+{% endblock %}
 {% block title %}homepage{% endblock %}
 {%  block script %}
   <script src="{{ url_for('static',filename='index.js') }}"></script>
@@ -138,13 +141,6 @@
           <div class="tile is-child">
             <button class="button is-warning is-fullwidth" id="category">Entertainment: Movies</button>
           </div>
-        <button id="joinGame" class="button is-warning is-medium" v-on:click="join_room">Join</button>
-      </div>
-      <div v-else>
-        <p class="title">Pick a name to join quiz rooms</p>
-      </div>
-    </article>
-  </div>
 
           Category 4
           <div class="tile is-child">
