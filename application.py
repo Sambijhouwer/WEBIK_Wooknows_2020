@@ -70,14 +70,7 @@ def ready(data):
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
-        """
-        Game start (separate emit probably):
-        Update game-lobby to show that players are playing a game (probably with Vue)
-        Pick quizmaster --> quizmaster = choose_quizmaster(GAME_ROOMS[room])
-        Let quizmaster pick category --> emit("pick", {'quizmaster': quizmaster})
-        Contact API with category and session token --> questions(category, session_token)
-        Somehow send questions and answers to game-lobby, (hopefully with Vue)
-        """
+        # start_game(GAME_ROOMS[room])
 
         # For now, just pass
         pass
