@@ -36,7 +36,7 @@ class info(object):
         """Ready ups player"""
         self.ready[name] = not self.ready[name] 
         if all(self.ready.values()) and len(self.players) > 1:
-            return True
+            pass
         else:
             return False
 

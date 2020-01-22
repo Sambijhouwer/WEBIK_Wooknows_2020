@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 if (this.username != ''){
                     this.errors = []
                     this.picked = false
+                    localStorage.setItem("username", this.username)
                 }
                 else{
                     this.errors.push('Fill in a valid name')
@@ -43,7 +44,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
             }
         }
     })
-
     // Connection made, get already made rooms
     app.socket.on("connect", () =>{
         app.socket.emit('get_rooms')
@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.querySelector('#BODY').innerHTML = data.url
         let name = data.game['game_name']
         document.title = name
-        app.$mount('#Lobby')
     })
     app.socket.on("lobby_update", data =>{
         let id = localStorage.getItem('room')

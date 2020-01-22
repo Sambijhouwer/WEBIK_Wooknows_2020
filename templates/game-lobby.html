@@ -1,4 +1,9 @@
-
+{% extends 'layout.html' %}
+{% block script %}
+<script type="text/javascript" src="/static/lobby.js"></script>
+{% endblock %}
+{% block title %}Game Lobby{% endblock %}
+{% block main %}
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-3">
@@ -88,4 +93,4 @@
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
   </div>
-{{ info }}
+{% endblock %}

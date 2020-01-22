@@ -45,8 +45,9 @@ def joinGame(data):
     if room in GAME_ROOMS:
         GAME_ROOMS[room].add_player(data['name'])
         join_room(room)
-        json_room = GAME_ROOMS[room].to_json()
-        emit("lobby", {'url': render_template("game-lobby.html"), 'game': json_room }, room=room)
+        # json_room = GAME_ROOMS[room].to_json()
+        return render_template("game-lobby.html")
+        # emit("lobby", {'url': render_template("game-lobby.html"), 'game': json_room }, room=room)
     else: 
         return False
 

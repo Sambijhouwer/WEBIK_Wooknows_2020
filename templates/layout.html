@@ -9,7 +9,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="text/javascript" src="/static/index.js"></script>
+    {% block script %}
+    {% endblock %}
   </head>
   <body>
     <header class="header" id="headerStyle">
@@ -27,6 +28,5 @@
         {% block main %}
         {% endblock %}
     </div>
-    
   </body>
 </html>
