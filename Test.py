@@ -14,7 +14,10 @@ def gameplay(playerlist, token = None):
         # Pick four random categories
         categories = random.sample(range(9, 32), 4)
         categories = {c : CATEGORIES[c] for c in categories}
-        print(categories)
+        # emit lobby, lobby komt binnen
+        # If game.quizmaster == store.username
+        # modalActive == True
+        # click event listeners
 
         # Get the category and send that to the API
 
@@ -22,11 +25,13 @@ def gameplay(playerlist, token = None):
         round_questions = questions(category, token)
 
         # Play a round
-        for play_round in round_questions:
-            q = play_round['question']
-            answers = {play_round['correct']: True}
-            answers.update({answer : False for answer in play_round['incorrects']})
-        
+        answers = dict()
+        for play_round in round_questions: 
+            correct_answer = play_round['correct']
+            wrong_answers = play_round['incorrects']
+            answers = {play_round['question']:[correct_answer, wrong_answers]}
+            print(answers)
+
         if score >= 10:
             
             break

@@ -75,12 +75,13 @@ def ready(data):
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
         # Choose a quizmaster
-        quizmaster = choose_quizmaster()
+        GAME_ROOMS[room].choose_quizmaster()
 
         # Choose 4 categories for the quizmaster to pick from
         categories = random.sample(range(9, 32), 4)
-        categories = {c : CATEGORIES[c] for c in categories}
+        categories = [CATEGORIES[c] for c in categories]
 
+        
 
 
 
