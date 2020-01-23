@@ -1,12 +1,8 @@
-"""
-Waarschijnlijk alles wegkieperen
-"""
-
 import requests
 import random
 import json
 
-def helpersAPI (category, token = None):
+def questions (category, token):
     """Contacts API and retrieves questions + answers based on category"""
 
     # Als geen token is meegegeven, maak replacement voor debuggen
@@ -14,13 +10,9 @@ def helpersAPI (category, token = None):
         token = requests.get("https://opentdb.com/api_token.php?command=request")
         token = json.loads(token.text)['token']
 
-
-    # Generate number of questions to be asked
-    number_of_questions = random.randint(1, 3)
-
     # Retrieve questions and answers from API 
     try:
-        response = requests.get(f"https://opentdb.com/api.php?amount={number_of_questions}&category={category}&type=multiple&token={token}")
+        response = requests.get(f"https://opentdb.com/api.php?amount=1&category={category}&type=multiple&token={token}")
         response.raise_for_status()
     except requests.RequestException:
         return None

@@ -1,10 +1,32 @@
 # WEBIK_Hooknows_2020
 Trivia Project for Webik 2020 @uva
 
-### How to install 
-- pip install -r requirements.txt
-- run: python application.py (flask run won't work)
 
+## Project setup
+```
+npm install
+pip install -r requirements.txt
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve (frontend)
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Flask api server
+```
+python application.py (backend)
+```
 # Projectleden
 
 - Steijn Wehman 
@@ -54,11 +76,12 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 
 # Controllers
 
--index
+- index
     This is the main page, here you can create a room, join a room and choose your username
--game
+- game
     This is the page where the rooms are hosted and the game takes place.
-
+- scoreboard
+    A page that displays the winner(s) and total scores after a game has ended
 
 
 # plugins and frameworks
@@ -71,6 +94,12 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
     https://bulma.io/documentation/
 - Vue
     https://vuejs.org/v2/guide/
+- Vue Router
+    https://router.vuejs.org/
+- Vuex
+    https://vuex.vuejs.org/
+- Vue-socket.io
+    https://github.com/MetinSeylan/Vue-Socket.io
 
 # schetsen
 homepage before username
