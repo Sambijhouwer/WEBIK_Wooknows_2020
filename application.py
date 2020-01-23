@@ -77,10 +77,6 @@ def ready(data):
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
-<<<<<<< HEAD
-        # start_game(GAME_ROOMS[room])
-=======
->>>>>>> 45f40bc0a9d6f641fed114814dd9602ebd334673
         # Choose a quizmaster
         GAME_ROOMS[room].choose_quizmaster()
 

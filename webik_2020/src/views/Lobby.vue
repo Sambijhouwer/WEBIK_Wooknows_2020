@@ -165,8 +165,7 @@ export default {
       this.modalActive = false
     },
     send_ans: function (event) {
-
-        this.$socket.emit()
+      this.$socket.emit()
     }
   }
 }
