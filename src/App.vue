@@ -28,6 +28,7 @@ export default {
       this.$router.push('game')
     },
     spel: function (data) {
+      console.log('Categorieeen')
       this.ask_categorie(data['categorie'])
       this.set_game(data['game'])
     },
@@ -35,6 +36,10 @@ export default {
       this.set_correct(data['answers'][0])
       this.add_questions(data['question'])
       this.shuffle_answers(data['answers'])
+    },
+    scoreboard: function (data) {
+      this.set_game(data['game'])
+      this.$router.push('scoreboard')
     }
   },
   methods: {

@@ -38,46 +38,51 @@
       <!-- If quizmaster has already selected a category: -->
       <article class="tile notification is-vertical" id="QnA_container">
 
+        <div class="content" v-if="gofo === true">
+            <p class="title" style="text-align: center;">Correct!</p>
+        </div>
+        <div class="content" v-if="gofo === false">
+            <p class="title" style="text-align: center;">Wrong!</p>
+        </div>
         <!-- Question -->
-        <div class="content">
-          <p class="title" style="text-align: center;" v-html="questions">{{ questions }}</p>
+        <div class="content" v-if="currentquestions === ''">
+            <p class="title" style="text-align: center;">Waiting for new question....</p>
         </div>
 
-        <!-- Answers -->
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-
-            <!-- Option A -->
-            <div class="tile is-child is-info box">
-              <p class="subtitle"  v-on:click="send_ans" :data-ans="answers[0]">{{ answers[0] }}</p>
+        <div v-else>
+            <div class="content">
+            <p class="title" style="text-align: center;" v-html="currentquestions"></p>
             </div>
 
-            <!-- Option C -->
-            <div class="tile is-child is-primary box">
-              <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]">{{ answers[1] }}</p>
-            </div>
-          </div>
-          <div class="tile is-parent is-vertical">
+            <!-- Answers -->
+            <div class="tile">
+            <div class="tile is-parent is-vertical" >
 
-            <!-- Option B -->
-            <div class="tile is-child is-danger box">
-              <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]">{{ answers[2] }}</p>
-            </div>
+                <!-- Option A -->
+                <div class="tile is-child is-info box" >
+                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p>
+                </div>
 
-            <!-- Option D -->
-            <div class="tile is-child is-warning box">
-              <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]">{{ answers[3] }}</p>
+                <!-- Option C -->
+                <div class="tile is-child is-primary box">
+                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p>
+                </div>
             </div>
-          </div>
+            <div class="tile is-parent is-vertical">
+
+                <!-- Option B -->
+                <div class="tile is-child is-danger box" >
+                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
+                </div>
+
+                <!-- Option D -->
+                <div class="tile is-child is-warning box">
+                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p>
+                </div>
+            </div>
+            </div>
         </div>
       </article>
-        <!-- Else: -->
-          <!-- If user is quizmaster: -->
-            <!-- Pick a category modal pops up -->
-
-          <!-- Else: -->
-            <!-- Notify: Quizmaster is selecting a category -->
-
     </div>
   </div>
 
@@ -134,7 +139,8 @@ export default {
     return {
       ready: false,
       modalActive: false,
-      currentquestion: ''
+      currentquestions: '',
+      gofo: undefined
     }
   },
   watch: {
@@ -145,7 +151,8 @@ export default {
     },
     questions: function () {
       if (this.questions.length !== 0) {
-        this.currentquestion = this.questions.pop()
+        this.gofo = undefined
+        this.currentquestions = this.questions.pop()
         this.pop_question()
       }
     }
@@ -161,11 +168,16 @@ export default {
     },
     send_cat: function (event) {
       this.$socket.emit('categorie', { 'categorie': event.target.getAttribute('data-choice'), 'room_id': this.game['game_id'] })
-      console.log(this.game['room_id'])
       this.modalActive = false
     },
     send_ans: function (event) {
+<<<<<<< HEAD:webik_2020/src/views/Lobby.vue
       this.$socket.emit()
+=======
+      this.currentquestions = ''
+      this.gofo = event.target.getAttribute('data-ans') === this.correct
+      this.$socket.emit('antwoorden', { 'antwoord': this.gofo, 'room_id': this.game['game_id'], 'user': this.username })
+>>>>>>> 931b54fe411429731213df28f3c7d4bc673d4392:src/views/Lobby.vue
     }
   }
 }

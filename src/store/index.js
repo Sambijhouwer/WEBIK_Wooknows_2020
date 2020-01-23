@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.categories = categorieen
     },
     add_questions (state, question) {
-      state.questions = question
+      state.questions.push(question)
     },
     pop_question (state) {
       state.questions.pop()

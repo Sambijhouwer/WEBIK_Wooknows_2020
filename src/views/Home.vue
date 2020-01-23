@@ -15,7 +15,7 @@
     <div class="tile">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child notification is-warning" style="text-align: center;">
-            <div v-if='picked'>
+            <div v-if='username === ""'>
               <p class="title">Join</p>
               <p class="subtitle">Choose your username</p>
               <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
@@ -32,7 +32,7 @@
             </div>
             <!-- Greet user -->
             <div v-else>
-              <p class="title">Welcome {{ user }}</p>
+              <p class="title">Welcome {{ username }}</p>
             </div>
         </article>
       </div>
@@ -41,7 +41,7 @@
     <!-- Red create room tile -->
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <div v-if="picked == false">
+        <div v-if="username !== ''">
           <p id="create_your_room" class="title">Create your own room!</p>
           <div class="content">
             <div class="field is-grouped">
@@ -64,7 +64,7 @@
   <!-- Blue join room list tile -->
   <div class="tile is-parent">
     <article class="tile is-child notification is-info" style="text-align: center;">
-      <div v-if="picked == false">
+      <div v-if="username !== ''">
         <p class="title">Available quiz rooms</p>
         <div class="container is-fluid">
           <div class="list is-hoverable" id="room_list">
@@ -116,7 +116,6 @@ export default {
       game_name: '',
       Active_Room: undefined,
       errors: [],
-      picked: true,
       rooms: []
     }
   },
