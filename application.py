@@ -29,6 +29,8 @@ CATEGORIES = {9: 'General Knowledge', 10: 'Entertainment: Books', 11: 'Entertain
 # Create Game object 
 @socketio.on('createGame')
 def createGame(data):
+    """
+    """
     gm = Game.info(data['name'])
     room = gm.game_id
     GAME_ROOMS[room] = gm
