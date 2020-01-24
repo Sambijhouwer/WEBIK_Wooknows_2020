@@ -7,7 +7,7 @@
       <!-- Room information tile -->
       <div class="tile is-child box" id="room_info">
         <p class="title">{{ game.game_name }}</p>
-        <p class="subtitle">information</p>
+        <p class="subtitle">current quizmaster: {{game.quizmaster}} </p>
       </div>
 
       <!-- Player scoreboard tile -->
@@ -15,7 +15,7 @@
         <p class="title">Player list</p>
         <p style="text-align: left;">Names Score</p>
         <ul id="scoreboard">
-          <li v-for="player in game.players" v-bind:key="player" style="max-width:150px;"> <span v-if=  "game.ready[player] === true" style="color: green; max-width:10em; word-wrap:break-word;"><span>{{ player }} </span> <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span> <span v-else style="color: #f25b35;">{{ player }} <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span></li>
+          <li v-for="player in game.players" v-bind:key="player" style="max-width:150px;"> <span v-if=  "game.ready[player] === true" style="color: green; max-width:16em; word-wrap:break-word;"><span>{{ player }} </span> <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span> <span id="langenaam" v-else style="color: #f25b35; max-width:10em; word-wrap:break-word;">{{ player }} <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span></li>
         </ul>
       </div>
 
@@ -28,28 +28,8 @@
           <div v-else>
               <p class="subtitle">You're ready!</p>
           </div>
-
-          <!-- Player scoreboard tile -->
-          <div class="tile is-child box" id="room_board">
-            <p class="title">Player list</p>
-            <p style="text-align: left;">Names Score</p>
-            <ul id="scoreboard">
-              <li v-for="player in game.players" v-bind:key="player">{{ player }}<span class="room_score">{{ game.scores[player] }}... {{ game.ready[player] }}</span></li>
-            </ul>
           </div>
-
-          <!-- Ready Up tile -->
-          <div class="tile is-child box" id="room_ready">
-              <div v-if="ready === false">
-                <p class="subtitle">Ready up for the game to start</p>
-                <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
-              </div>
-              <div v-else>
-                  <p class="subtitle">You're ready!</p>
-              </div>
           </div>
-        
-        </div>
 
         <!-- Tile which holds Q&A -->
         <div class="tile" id="questionbox">
@@ -63,7 +43,6 @@
             <div class="content" v-if="gofo === false">
               <p class="title" style="text-align: center;">Wrong!</p>
             </div>
-            
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
               <p class="title" style="text-align: center;">Waiting for new question....</p>
@@ -93,7 +72,7 @@
                   <!-- Option B -->
                   <div class="tile is-child is-danger box" >
                       <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
-                  </div>
+                </div>
 
                   <!-- Option D -->
                   <div class="tile is-child is-warning box">
@@ -197,4 +176,5 @@ export default {
     }
   }
 }
+
 </script>
