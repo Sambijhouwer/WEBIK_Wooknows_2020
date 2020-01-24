@@ -15,7 +15,7 @@
         <p class="title">Player list</p>
         <p style="text-align: left;">Names Score</p>
         <ul id="scoreboard">
-          <li v-for="player in game.players" v-bind:key="player">{{ player }}<span class="room_score">{{ game.scores[player] }}... {{ game.ready[player] }}</span></li>
+          <li v-for="player in game.players" v-bind:key="player" style="max-width:150px;"> <span v-if=  "game.ready[player] === true" style="color: green; max-width:10em; word-wrap:break-word;"><span>{{ player }} </span> <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span> <span v-else style="color: #f25b35;">{{ player }} <span class="room_score" style="color:white;">{{ game.scores[player] }}</span></span></li>
         </ul>
       </div>
 
