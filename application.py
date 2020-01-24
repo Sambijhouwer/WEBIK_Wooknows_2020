@@ -1,15 +1,9 @@
-from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
-from flask_session import Session
-from tempfile import mkdtemp
-from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Flask
 from flask_socketio import SocketIO, emit, send, join_room
 import eventlet
 import Game
 import random
 from helpers import questions
-
-#sys.path.append(os.getcwd())
 
 # Configure application
 app = Flask(__name__)
@@ -29,8 +23,7 @@ CATEGORIES = {9: 'General Knowledge', 10: 'Entertainment: Books', 11: 'Entertain
 # Create Game object 
 @socketio.on('createGame')
 def createGame(data):
-    """
-    """
+    """Create a new Game object"""
     gm = Game.info(data['name'])
     room = gm.game_id
     GAME_ROOMS[room] = gm
@@ -40,6 +33,7 @@ def createGame(data):
 # Join Game object
 @socketio.on('joinGame')
 def joinGame(data):
+    """Joins user to a Game"""
     room = data['room_id']
     if room in GAME_ROOMS:
         GAME_ROOMS[room].add_player(data['name'])
@@ -52,11 +46,13 @@ def joinGame(data):
 # Send all rooms to client
 @socketio.on('get_rooms')
 def send_rooms():
+    """Sends existing rooms to new connecting users"""
     emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
 
 # Ready ups user
 @socketio.on("ready")
 def ready(data):
+    """Ready up user, if every player is ready start game"""
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
@@ -67,6 +63,7 @@ def ready(data):
 
 @socketio.on('categorie')
 def question(data):
+    """Fetch and send questions from user choosen category"""
     cat_id = [i for i, item in CATEGORIES.items() if item == data['categorie']][0]
     room_id = data['room_id']
     api_questions = questions(cat_id, GAME_ROOMS[room_id].session_token)
@@ -76,6 +73,7 @@ def question(data):
 
 @socketio.on('antwoorden')
 def antwoorden(data):
+    """Checks answers, send to scoreboard if there is a winner"""
     room = data['room_id']
     GAME_ROOMS[room].up_score(data['user'], data['antwoord'])
     json_room = GAME_ROOMS[room].to_json()
@@ -88,10 +86,9 @@ def antwoorden(data):
         
 
 def game_cats(room):
-    # Choose a quizmaster
+    """Helper function to emit categories to users"""
     GAME_ROOMS[room].choose_quizmaster()
     
-    # Choose 4 categories for the quizmaster to pick from
     categories = random.sample(range(9, 32), 4)
     categories = [CATEGORIES[c] for c in categories]
     emit('spel', {'categorie': categories, 'game': GAME_ROOMS[room].to_json()}, room=room)
