@@ -44,19 +44,23 @@ class info(object):
             return False
 
     def choose_quizmaster(self):
+        """Chooses quizmaster"""
         self.quizmaster = random.choice(self.players)
         return True
 
     def add_questions(self, questions):
+        """Adds questions"""
         self.questions = questions
         return True
     
     def up_score(self, name, correct):
+        """Updates Score"""
         self.teller += 1
         if correct:
             self.scores[name] += 1
 
     def check_winner(self):
+        """Checks for a winner and returns True if winner found"""
         winner = []
         for player, score in self.scores.items():
             if score == 10:

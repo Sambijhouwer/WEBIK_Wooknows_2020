@@ -29,107 +29,127 @@
               <p class="subtitle">You're ready!</p>
           </div>
 
-      </div>
-    </div>
+          <!-- Player scoreboard tile -->
+          <div class="tile is-child box" id="room_board">
+            <p class="title">Player list</p>
+            <p style="text-align: left;">Names Score</p>
+            <ul id="scoreboard">
+              <li v-for="player in game.players" v-bind:key="player">{{ player }}<span class="room_score">{{ game.scores[player] }}... {{ game.ready[player] }}</span></li>
+            </ul>
+          </div>
 
-    <!-- Tile which holds Q&A -->
-    <div class="tile" id="questionbox">
-
-      <!-- If quizmaster has already selected a category: -->
-      <article class="tile notification is-vertical" id="QnA_container">
-
-        <div class="content" v-if="gofo === true">
-            <p class="title" style="text-align: center;">Correct!</p>
+          <!-- Ready Up tile -->
+          <div class="tile is-child box" id="room_ready">
+              <div v-if="ready === false">
+                <p class="subtitle">Ready up for the game to start</p>
+                <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
+              </div>
+              <div v-else>
+                  <p class="subtitle">You're ready!</p>
+              </div>
+          </div>
+        
         </div>
-        <div class="content" v-if="gofo === false">
-            <p class="title" style="text-align: center;">Wrong!</p>
-        </div>
-        <!-- Question -->
-        <div class="content" v-if="currentquestions === ''">
-            <p class="title" style="text-align: center;">Waiting for new question....</p>
-        </div>
 
-        <div v-else>
-            <div class="content">
-            <p class="title" style="text-align: center;" v-html="currentquestions"></p>
+        <!-- Tile which holds Q&A -->
+        <div class="tile" id="questionbox">
+
+          <!-- If quizmaster has already selected a category: -->
+          <article class="tile notification is-vertical" id="QnA_container">
+
+            <div class="content" v-if="gofo === true">
+              <p class="title" style="text-align: center;">Correct!</p>
+            </div>
+            <div class="content" v-if="gofo === false">
+              <p class="title" style="text-align: center;">Wrong!</p>
+            </div>
+            
+            <!-- Question -->
+            <div class="content" v-if="currentquestions === ''">
+              <p class="title" style="text-align: center;">Waiting for new question....</p>
             </div>
 
-            <!-- Answers -->
-            <div class="tile">
-            <div class="tile is-parent is-vertical" >
+            <div v-else>
+              <div class="content">
+                <p class="title" style="text-align: center;" v-html="currentquestions"></p>
+              </div>
 
-                <!-- Option A -->
-                <div class="tile is-child is-info box" >
+              <!-- Answers -->
+              <div class="tile">
+                <div class="tile is-parent is-vertical" >
+
+                  <!-- Option A -->
+                  <div class="tile is-child is-info box" >
                     <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p>
-                </div>
+                  </div>
 
-                <!-- Option C -->
-                <div class="tile is-child is-primary box">
+                  <!-- Option C -->
+                  <div class="tile is-child is-primary box">
                     <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p>
+                  </div>
                 </div>
-            </div>
-            <div class="tile is-parent is-vertical">
+                <div class="tile is-parent is-vertical">
 
-                <!-- Option B -->
-                <div class="tile is-child is-danger box" >
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
-                </div>
+                  <!-- Option B -->
+                  <div class="tile is-child is-danger box" >
+                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
+                  </div>
 
-                <!-- Option D -->
-                <div class="tile is-child is-warning box">
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p>
+                  <!-- Option D -->
+                  <div class="tile is-child is-warning box">
+                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p>
+                  </div>
                 </div>
+              </div>
             </div>
-            </div>
+          </article>
         </div>
-      </article>
-    </div>
-  </div>
+      </div>
 
-  <!-- Modal which holds choosable categories -->
-  <div class="modal" id="myModal" v-bind:class="{'is-active': modalActive === true}">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="content">
-          <div class="tile is-parent is-vertical is-info notification">
+      <!-- Modal which holds choosable categories -->
+      <div class="modal" id="myModal" v-bind:class="{'is-active': modalActive === true}">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="content">
+            <div class="tile is-parent is-vertical is-info notification">
               <h3 style="color: white; text-align: center;">
                 Congrats! You are the quizmaster. <br>
                 Please pick one of the listed categories:
               </h3>
 
-          <!-- Category options -->
-          <div class="buttons has-addons is-centered is-large">
-            <div class="tile is-parent is-vertical">
+              <!-- Category options -->
+              <div class="buttons has-addons is-centered is-large">
+                <div class="tile is-parent is-vertical">
 
-              <!-- Category 1 -->
-              <div class="tile is-child">
-                <button class="button is-danger is-fullwidth" id="category" v-on:click="send_cat" :data-choice="categories[0]">{{ categories[0] }}</button>
-              </div>
+                  <!-- Category 1 -->
+                  <div class="tile is-child">
+                    <button class="button is-danger is-fullwidth" id="category" v-on:click="send_cat" :data-choice="categories[0]">{{ categories[0] }}</button>
+                  </div>
 
-              <!-- Category 2 -->
-              <div class="tile is-child">
-                <button class="button is-link is-fullwidth" id="category" v-on:click="send_cat" :data-choice="categories[1]">{{ categories[1] }}</button>
-              </div>
-            </div>
-            <div class="tile is-parent is-vertical">
+                  <!-- Category 2 -->
+                  <div class="tile is-child">
+                    <button class="button is-link is-fullwidth" id="category" v-on:click="send_cat" :data-choice="categories[1]">{{ categories[1] }}</button>
+                  </div>
+                </div>
+                <div class="tile is-parent is-vertical">
 
-              <!-- Category 3 -->
-              <div class="tile is-child">
-                <button class="button is-warning is-fullwidth" id="category"  v-on:click="send_cat" :data-choice="categories[2]">{{ categories[2] }}</button>
-              </div>
+                  <!-- Category 3 -->
+                  <div class="tile is-child">
+                    <button class="button is-warning is-fullwidth" id="category"  v-on:click="send_cat" :data-choice="categories[2]">{{ categories[2] }}</button>
+                  </div>
 
-              <!-- Category 4 -->
-              <div class="tile is-child">
-                <button class="button is-success is-fullwidth" id="category"  v-on:click="send_cat" :data-choice="categories[3]">{{ categories[3] }}</button>
+                  <!-- Category 4 -->
+                  <div class="tile is-child">
+                    <button class="button is-success is-fullwidth" id="category"  v-on:click="send_cat" :data-choice="categories[3]">{{ categories[3] }}</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-      </div>
-    </div>
-    </div>
+  </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'

@@ -60,6 +60,7 @@ html, body{
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global classes */
 a.no_style {
   text-decoration-line: none;
 }
@@ -86,14 +87,24 @@ a.no_style {
   padding: .75rem;
 }
 
-#questionbox {
-  padding: .75rem;
-}
-
 .content.is-child {
   text-align: center;
 }
 
+/* The container for the questions; game lobby */
+#questionbox {
+  padding: .75rem;
+}
+
+#QnA_container {
+  background-color: #373995;
+  color: white;
+  border-width: 2px;
+  border-color: white;
+  border-style: solid;
+}
+
+/* Four tiles answers; game lobby */
 .tile.is-child.is-info.box {
   background-color: #1FB58F;
   color: white;
@@ -155,27 +166,7 @@ a.no_style {
   filter: brightness(92%);
 }
 
-#logo1{
-  font-size: 4vw;
-  color: rgb(109, 110, 113)
-}
-#logo2{
-  font-size: 4vw;
-  color: rgb(242, 175, 88);
-}
-#headerStyle{
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-#QnA_container {
-  background-color: #373995;
-  color: white;
-  border-width: 2px;
-  border-color: white;
-  border-style: solid;
-}
-
+/* Score board; game lobby */
 #room_board {
   border-color: white;
   border-width: 2px;
@@ -184,6 +175,7 @@ a.no_style {
   color: white;
 }
 
+/* Ready up tile; game lobby */
 #room_ready {
   border-color: white;
   border-width: 2px;
@@ -191,6 +183,7 @@ a.no_style {
   background-color: #373995;
 }
 
+/* Room information; game lobby */
 #room_info {
   border-color: white;
   border-width: 2px;
@@ -198,9 +191,12 @@ a.no_style {
   background-color: #373995;
 }
 
+/* Create your room; red tile; homepage */
 #create_your_room{
   margin-bottom: 1%;
 }
+
+/* Style for the room list; home page */
 
 #room_list{
   border-radius: 10px;
@@ -238,17 +234,34 @@ a.no_style {
   border-bottom: none;
 }
 
+#joinGame {
+  margin-top: 15px;
+}
+
+/* center owl; yellow container; homepage */
 #owl_homepage {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-#joinGame {
-  margin-top: 15px;
-}
-
+/* Zet de score in de room netjes */
 .room_score {
   padding-left: 200px;
 }
+
+ /* Style for the logo */
+#logo1{
+  font-size: 4vw;
+  color: rgb(109, 110, 113)
+}
+#logo2{
+  font-size: 4vw;
+  color: rgb(242, 175, 88);
+}
+#headerStyle{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 </style>
