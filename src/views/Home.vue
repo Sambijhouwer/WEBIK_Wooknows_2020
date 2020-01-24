@@ -79,7 +79,7 @@
              >{{ room.game_name }}</a>
           </div>
         </div>
-        <button class="button is-warning is-medium" id='joinGame' v-on:click="join_room">Join</button>
+        <button class="button is-warning is-medium" id="joinGame" v-on:click="join_room">Join</button>
       </div>
       <div v-else>
         <p class="title">Pick a name to join quiz rooms</p>
