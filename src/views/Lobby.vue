@@ -13,7 +13,7 @@
       <!-- Player scoreboard tile -->
       <div class="tile is-child box" id="room_board">
         <p class="title">Player list</p>
-        <p style="text-align: justify;">Names Score</p>
+        <p style="text-align: left;">Names Score</p>
         <ul id="scoreboard">
           <li v-for="player in game.players" v-bind:key="player">{{ player }}<span class="room_score">{{ game.scores[player] }}... {{ game.ready[player] }}</span></li>
         </ul>
@@ -171,13 +171,9 @@ export default {
       this.modalActive = false
     },
     send_ans: function (event) {
-<<<<<<< HEAD:webik_2020/src/views/Lobby.vue
-      this.$socket.emit()
-=======
       this.currentquestions = ''
       this.gofo = event.target.getAttribute('data-ans') === this.correct
       this.$socket.emit('antwoorden', { 'antwoord': this.gofo, 'room_id': this.game['game_id'], 'user': this.username })
->>>>>>> 931b54fe411429731213df28f3c7d4bc673d4392:src/views/Lobby.vue
     }
   }
 }

@@ -47,6 +47,7 @@ export default {
   }
 }
 </script>
+
 <style>
 html, body{
   background-color:#292861;
@@ -202,25 +203,49 @@ a.no_style {
 }
 
 #room_list{
-  max-height: 200px;
+  border-radius: 10px;
+  max-height: 300px;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
+  text-decoration: none;
+  display: block;
   overflow-y: scroll;
-  background-color: rgb(39, 147,218);
+  color: white;
+  font-size: larger;
 }
 
-.room_buttons{
-  color: black;
-  font-size: normal;
-  border-color: rgb(32, 126, 170);
-  background-color: rgb(32, 126, 189)
+#room_list::-webkit-scrollbar {
+  display: none !important;
+}
 
+#room_buttons {
+  background-color: rgb(36, 142, 213);
+  text-decoration: none !important;
+  color: white;
+  border-bottom: none;
+}
+
+#room_buttons:hover{
+  background-color: rgb(35, 137, 205);
+  text-decoration: none !important;
+  border-bottom: none;
+}
+
+#room_buttons.is-active{
+  background-color:rgb(34, 95, 206);
+  text-decoration: none !important;
+  display: block;
+  border-bottom: none;
 }
 
 #owl_homepage {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#joinGame {
+  margin-top: 15px;
 }
 
 .room_score {

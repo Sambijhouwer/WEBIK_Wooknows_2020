@@ -58,23 +58,6 @@ def ready(data):
     user = data['user']
     room = data['room_id']
     if GAME_ROOMS[room].ready_up(user):
-<<<<<<< HEAD
-        # Choose a quizmaster
-        GAME_ROOMS[room].choose_quizmaster()
-
-        # Choose 4 categories for the quizmaster to pick from
-        categories = random.sample(range(9, 32), 4)
-        categories = [CATEGORIES[c] for c in categories]
-
-        
-
-
-
-
-        # For now, just pass
-        pass
-    
-=======
         game_cats(room)
     else:
         json_room = GAME_ROOMS[room].to_json()
@@ -93,7 +76,6 @@ def question(data):
 def antwoorden(data):
     room = data['room_id']
     GAME_ROOMS[room].up_score(data['user'], data['antwoord'])
->>>>>>> 931b54fe411429731213df28f3c7d4bc673d4392
     json_room = GAME_ROOMS[room].to_json()
     emit("lobby", {'game': json_room }, room=room)
     if GAME_ROOMS[room].teller % len(GAME_ROOMS[room].players) == 0:
