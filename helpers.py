@@ -5,11 +5,6 @@ import json
 def questions (category, token):
     """Contacts API and retrieves questions + answers based on category"""
 
-    # Als geen token is meegegeven, maak replacement voor debuggen
-    if not token:
-        token = requests.get("https://opentdb.com/api_token.php?command=request")
-        token = json.loads(token.text)['token']
-
     # Retrieve questions and answers from API 
     try:
         response = requests.get(f"https://opentdb.com/api.php?amount=1&category={category}&type=multiple&token={token}")
