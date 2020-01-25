@@ -12,53 +12,10 @@
         <div class="tile is-vertical is-4">
 
           <!-- Yellow username tile -->
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <article class="tile is-child notification is-warning" style="text-align: center;">
-                <div v-if='username === ""'>
-                  <p class="title">Join</p>
-                  <p class="subtitle">Choose your username</p>
-                  <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
-                  <div class="container is-fluid">
-                    <div class="container is-fluid">
-                      <div class="field">
-                        <div class="input-is-hovered">
-                          <input class="input" type="text" placeholder="Username" v-model="user">
-                        </div>
-                      </div>
-                        <button class="button is-success is-medium" v-on:click="get_user">Go!</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- Greet user -->
-                <div v-else>
-                  <p class="title">Welcome {{ username }}</p>
-                </div>
-              </article>
-            </div>
-          </div>
+          <username v-on:error="error_handler" v-on:no-error="reset_error"></username>
 
           <!-- Red create room tile -->
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-danger">
-              <div v-if="username !== ''">
-                <p id="create_your_room" class="title">Create your own room!</p>
-                <div class="content">
-                  <div class="field is-grouped">
-                    <p class= "control is-expanded">
-                      <input class="input" type="text" placeholder="Create your own room" v-model.trim="game_name">
-                    </p>
-                    <p class="control">
-                      <a class="button is-info" v-on:click="make_room">Create</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div v-else>
-                <p id="create_your_room" class="title">Pick a name to create a room</p>
-              </div>
-            </article>
-          </div>
+          <createroom v-on:error="error_handler" v-on:no-error="reset_error"></createroom>
         </div>
 
         <!-- Blue join room list tile -->
@@ -92,7 +49,7 @@
           <article class="tile is-child notification is-success">
             <div class="content">
               <p class="title">How to play</p>
-              <p class="subtitle">1. Choose a unique username</p> 
+              <p class="subtitle">1. Choose a unique username</p>
               <p class="subtitle">2. Join or create a quiz room.</p>
               <p class="subtitle">3. A quizmaster will be selected at random. The quizmaster gets to choose the category for the coming questions.
                 The amount of questions in this category are also random. </p>
@@ -107,18 +64,21 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import { mapState, mapMutations } from 'vuex'
+import username from '../components/username.vue'
+import createroom from '../components/createroom.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'home',
   data: function () {
     return {
-      user: '',
-      game_name: '',
       Active_Room: undefined,
       errors: [],
       rooms: []
     }
+  },
+  components: {
+    username,
+    createroom
   },
   sockets: {
     connect: function () {
@@ -139,23 +99,12 @@ export default {
     ...mapState(['username'])
   },
   methods: {
-    ...mapMutations(['set_username']),
-    get_user: function () {
-      if (this.user !== '') {
-        this.errors = []
-        this.picked = false
-        this.set_username(this.user)
-      } else {
-        this.errors.push('Fill in a valid name')
-      }
+    error_handler: function (error) {
+      this.errors.pop()
+      this.errors.push(error)
     },
-    make_room: function () {
-      if (this.game_name !== '') {
-        this.errors = []
-        this.$socket.emit('createGame', { 'name': this.game_name })
-      } else {
-        this.errors.push('Fill in a valid name')
-      }
+    reset_error: function () {
+      this.errors = []
     },
     join_room: function () {
       if (this.Active_Room !== undefined) {

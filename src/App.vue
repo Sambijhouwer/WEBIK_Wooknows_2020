@@ -191,11 +191,6 @@ a.no_style {
   background-color: #373995;
 }
 
-/* Create your room; red tile; homepage */
-#create_your_room{
-  margin-bottom: 1%;
-}
-
 /* Style for the room list; home page */
 
 #room_list{
@@ -236,13 +231,6 @@ a.no_style {
 
 #joinGame {
   margin-top: 15px;
-}
-
-/* center owl; yellow container; homepage */
-#owl_homepage {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Zet de score in de room netjes */

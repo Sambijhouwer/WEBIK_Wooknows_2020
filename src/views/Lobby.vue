@@ -29,7 +29,7 @@
                   <p class="subtitle">You're ready!</p>
               </div>
           </div>
-        
+
         </div>
 
         <!-- Tile which holds Q&A -->
@@ -44,7 +44,7 @@
             <div class="content" v-if="gofo === false">
               <p class="title" style="text-align: center;">Wrong!</p>
             </div>
-            
+
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
               <p class="title" style="text-align: center;">Waiting for new question....</p>
