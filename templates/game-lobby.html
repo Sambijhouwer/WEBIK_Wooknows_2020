@@ -1,0 +1,116 @@
+  <div class="container is-fluid">
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-3">
+          
+      <!-- Room information tile -->
+      <div class="tile is-child box" id="room_info">
+        <p class="title">[[ username ]]</p>
+        <p class="subtitle">current quizmaster: [[ quizmaster ]]</p>
+      </div>
+          
+      <!-- Player scoreboard tile -->
+      <div class="tile is-child box" id="room_board">
+        <p class="title">Player list</p>
+        <p style="text-align: justify;">Names Score</p>
+        <ul id="scoreboard">
+          <li v-for="player in game.players">[[ player ]]<span class="room_score">[[ room.scores[player] ]]</span></li>
+        </ul>
+      </div>
+
+      <!-- Ready Up tile -->
+      <div class="tile is-child box" id="room_ready">
+        <button class="button is-info modal-button" v-on:click="modalActive = !modalActive">Pick A Category!</button>
+        <p class="subtitle">Ready up for the game to start</p>
+        <button class="button is-success is-large is-fullwidth" type="submit">READY!</button>
+      </div>
+    </div>
+
+    <!-- Tile which holds Q&A -->
+    <div class="tile" id="questionbox">
+
+      <!-- If quizmaster has already selected a category: -->
+      <article class="tile notification is-vertical" id="QnA_container">
+            
+        <!-- Question -->
+        <div class="content">
+          <p class="title" style="text-align: center;">What is the largest fish in the world?</p>
+        </div>
+
+        <!-- Answers -->
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+
+            <!-- Option A -->
+            <div class="tile is-child is-info box">
+              <p class="subtitle">A whale shark</p>
+            </div>
+
+            <!-- Option C -->
+            <div class="tile is-child is-primary box">
+              <p class="subtitle">A great white shark</p>
+            </div>
+          </div>
+          <div class="tile is-parent is-vertical">
+
+            <!-- Option B -->
+            <div class="tile is-child is-danger box">
+              <p class="subtitle">A blue whale</p>
+            </div>
+
+            <!-- Option D -->
+            <div class="tile is-child is-warning box">
+              <p class="subtitle">An angler fish</p>
+            </div>
+          </div>
+        </div> 
+      </article>
+    </div>
+  </div>
+
+  <!-- Modal which holds choosable categories -->
+  
+    <div class="modal" id="myModal" v-bind:class="{'is-active': modalActive === true}">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="content">
+          <div class="tile is-parent is-vertical is-info notification">
+              <h3 style="color: white; text-align: center;">
+                Congrats! You are the quizmaster. <br>
+                Please pick one of the listed categories:
+              </h3>
+          
+          <!-- Category options -->
+          <div class="buttons has-addons is-centered is-large">
+            <div class="tile is-parent is-vertical">
+    
+              <!-- Category 1 -->
+              <div class="tile is-child">
+                <button class="button is-danger is-fullwidth" id="category">Nature And Science</button>
+              </div>
+    
+              <!-- Category 2 -->
+              <div class="tile is-child">
+                <button class="button is-link is-fullwidth" id="category">Entertainment: Video Games</button>
+              </div>
+            </div>
+            <div class="tile is-parent is-vertical">
+    
+              <!-- Category 3 -->
+              <div class="tile is-child">
+                <button class="button is-warning is-fullwidth" id="category">Entertainment: Movies</button>
+              </div>
+    
+              <!-- Category 4 -->
+              <div class="tile is-child">
+                <button class="button is-success is-fullwidth" id="category">General Knowledge</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" v-on:click="modalActive = !modalActive"></button> <!-- deze moet weg -->
+      </div>
+    </div>
+  </div>
+{{ info }}
