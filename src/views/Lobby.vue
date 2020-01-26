@@ -13,9 +13,14 @@
       <!-- Player scoreboard tile -->
       <div class="tile is-child box" id="room_board">
         <p class="title">Player list</p>
-        <p style="text-align: left;">Names Score</p>
+        <p style="text-align: left;">Names<span style= "color:#383995;">_________________________</span>Score</p>
         <ul id="scoreboard">
-          <li v-for="player in game.players" v-bind:key="player" style="max-width:16em;"> <span v-if=  "game.ready[player] === true" style="color: green;">{{ player }} <span class="room_score" style="color:white; float:right;">{{ game.scores[player] }}</span></span> <span id="langenaam" v-else style="color: #f25b35; max-width:10em;">{{ player }} <span class="room_score" style="color:white; float:right;">{{ game.scores[player] }}</span></span></li>
+          <li v-for="player in game.players" v-bind:key="player" style="max-width:25em;">
+            <span v-if=  "game.ready[player] === true" style="color: green;">
+              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+            <span v-else style="color: #f25b35; max-width:30em;">
+              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+          </li>
         </ul>
       </div>
 
