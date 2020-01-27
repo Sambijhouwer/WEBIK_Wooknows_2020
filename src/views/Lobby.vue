@@ -45,11 +45,11 @@
           <!-- If quizmaster has already selected a category: -->
           <article class="tile notification is-vertical" id="QnA_container">
 
-            <div class="content" v-if="correct === true">
-              <p class="title">Correct!</p>
+            <div class="content" v-if="wrong === true">
+              <p class="title" style="text-align: center;">Correct!</p>
             </div>
-            <div class="content" v-if="correct === false">
-              <p class="title">Wrong!</p>
+            <div class="content" v-if="wrong === false">
+              <p class="title" style="text-align: center;">Wrong!</p>
             </div>
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
@@ -147,7 +147,7 @@ export default {
       ready: false,
       modalActive: false,
       currentquestions: '',
-      correct: undefined
+      wrong: undefined
     }
   },
   watch: {
@@ -158,7 +158,7 @@ export default {
     },
     questions: function () {
       if (this.questions.length !== 0) {
-        this.correct = undefined
+        this.wrong = undefined
         this.currentquestions = this.questions.pop()
         this.pop_question()
       }
@@ -179,8 +179,8 @@ export default {
     },
     send_ans: function (event) {
       this.currentquestions = ''
-      this.correct = event.target.getAttribute('data-ans') === this.correct
-      this.$socket.emit('answers', { 'ans': this.correct, 'room_id': this.game['game_id'], 'user': this.username })
+      this.wrong = event.target.getAttribute('data-ans') === this.correct
+      this.$socket.emit('answers', { 'ans': this.wrong, 'room_id': this.game['game_id'], 'user': this.username })
     }
   }
 }
