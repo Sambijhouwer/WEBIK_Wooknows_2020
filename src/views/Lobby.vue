@@ -1,35 +1,43 @@
 <template>
-  <div>
-    <div class="container is-fluid">
-      <div class="tile is-ancestor">
-        <div class="tile is-vertical is-3">
+    <div>
+        <div class="container is-fluid">
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-3">
 
-          <!-- Room information tile -->
-          <div class="tile is-child box" id="room_info">
-            <p class="title">{{ game.game_name }}</p>
-            <p class="subtitle">information</p>
-          </div>
+      <!-- Room information tile -->
+      <div class="tile is-child box" id="room_info">
+        <p class="title">{{ game.game_name }}</p>
+        <p class="subtitle">current quizmaster: {{game.quizmaster}} </p>
+      </div>
 
-          <!-- Player scoreboard tile -->
-          <div class="tile is-child box" id="room_board">
-            <p class="title">Player list</p>
-            <p style="text-align: left;">Names Score</p>
-            <ul id="scoreboard">
-              <li v-for="player in game.players" v-bind:key="player">{{ player }}<span class="room_score">{{ game.scores[player] }}... {{ game.ready[player] }}</span></li>
-            </ul>
-          </div>
+      <!-- Player scoreboard tile -->
+      <div class="tile is-child box" id="room_board">
+        <p class="title">Player list</p>
+                <ul id="scoreboard">
+              <li class="leftTitle"> Names </li> <li class="rightTitle"> Score</li>
+          <li v-for="player in game.players" v-bind:key="player" class="forloop">
+            <span v-if=  "game.ready[player] === true" class="ready">
+            <span class="usernameInList"> {{ player }}</span> <span class="room_score" >{{ game.scores[player] }}</span></span>
+            <span v-else class="unready">
+            <span class="usernameInList"> {{ player }} </span> <span class="room_score">{{ game.scores[player] }}</span></span>
+          </li>
+        </ul>
+      </div>
 
-          <!-- Ready Up tile -->
-          <div class="tile is-child box" id="room_ready">
-              <div v-if="ready === false">
-                <p class="subtitle">Ready up for the game to start</p>
-                <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
-              </div>
-              <div v-else>
-                  <p class="subtitle">You're ready!</p>
-              </div>
+      <!-- Ready up tile -->
+      <div class="tile is-child box" id="room_ready" v-if="game.players.length > 1">
+          <div v-if="ready === false">
+            <p class="subtitle">Are you ready?</p>
+            <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
           </div>
-        </div>
+          <div v-else>
+              <p class="subtitle">You're ready!</p>
+          </div>
+      </div>
+      <div v-else>
+        <p class='subtitle'>You need at least 2 players to start a game</p>
+      </div>
+    </div>
 
         <!-- Tile which holds Q&A -->
         <div class="tile" id="questionbox">
@@ -37,21 +45,21 @@
           <!-- If quizmaster has already selected a category: -->
           <article class="tile notification is-vertical" id="QnA_container">
 
-            <div class="content" v-if="gofo === true">
+            <div class="content" v-if="wrong === true">
               <p class="title" style="text-align: center;">Correct!</p>
             </div>
-            <div class="content" v-if="gofo === false">
+            <div class="content" v-if="wrong === false">
               <p class="title" style="text-align: center;">Wrong!</p>
             </div>
-
+            
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
-              <p class="title" style="text-align: center;">Waiting for new question....</p>
+              <p class="title">Waiting for new question....</p>
             </div>
 
             <div v-else>
               <div class="content">
-                <p class="title" style="text-align: center;" v-html="currentquestions"></p>
+                <p class="title" v-html="currentquestions"></p>
               </div>
 
               <!-- Answers -->
@@ -63,17 +71,17 @@
                     <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p>
                   </div>
 
-                  <!-- Option C -->
+                  <!-- Option B -->
                   <div class="tile is-child is-primary box">
                     <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p>
                   </div>
                 </div>
                 <div class="tile is-parent is-vertical">
 
-                  <!-- Option B -->
+                  <!-- Option C -->
                   <div class="tile is-child is-danger box" >
                       <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
-                  </div>
+                </div>
 
                   <!-- Option D -->
                   <div class="tile is-child is-warning box">
@@ -92,7 +100,7 @@
         <div class="modal-content">
           <div class="content">
             <div class="tile is-parent is-vertical is-info notification">
-              <h3 style="color: white; text-align: center;">
+              <h3 class="title">
                 Congrats! You are the quizmaster. <br>
                 Please pick one of the listed categories:
               </h3>
@@ -140,7 +148,7 @@ export default {
       ready: false,
       modalActive: false,
       currentquestions: '',
-      gofo: undefined
+      wrong: undefined
     }
   },
   watch: {
@@ -151,7 +159,7 @@ export default {
     },
     questions: function () {
       if (this.questions.length !== 0) {
-        this.gofo = undefined
+        this.wrong = undefined
         this.currentquestions = this.questions.pop()
         this.pop_question()
       }
@@ -172,9 +180,49 @@ export default {
     },
     send_ans: function (event) {
       this.currentquestions = ''
-      this.gofo = event.target.getAttribute('data-ans') === this.correct
-      this.$socket.emit('antwoorden', { 'antwoord': this.gofo, 'room_id': this.game['game_id'], 'user': this.username })
+      this.wrong = event.target.getAttribute('data-ans') === this.correct
+      this.$socket.emit('answers', { 'ans': this.wrong, 'room_id': this.game['game_id'], 'user': this.username })
     }
   }
 }
+
 </script>
+<style scoped>
+.leftTitle{
+  float:left;
+}
+.rightTitle{
+  text-align:right;
+  padding-right:17px;
+}
+.forloop{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.ready{
+  color: green;
+}
+.unready{
+  color: #f25b35;
+  width:20em;
+}
+.usernameInList{
+  max-width:65%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:left;
+  padding-right:0;
+  display:inline-block;
+}
+.room_score{
+  color:white;
+  float:right;
+  padding-right:2em;
+}
+.title{
+  text-align: center;
+}
+
+</style>
