@@ -27,7 +27,7 @@
       <!-- Ready up tile -->
       <div class="tile is-child box" id="room_ready">
           <div v-if="ready === false">
-            <p class="subtitle">Ready up for the game to start</p>
+            <p class="subtitle">Are you ready?</p>
             <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
           </div>
           <div v-else>

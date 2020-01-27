@@ -20,7 +20,9 @@
                 <button class="button is-warning is-medium" id="joinGame" v-on:click="join_room">Join</button>
             </div>
             <div v-else>
-                <p class="title">Pick a name to join quiz rooms</p>
+                <p class="title">Hello! Welcome to our trivia game.</p>
+                <img src="https://i.ibb.co/j5TdskZ/wijzendeuil.png" width="200" height="209" alt="logo">
+                <p class="title">Please select a username before starting</p>
             </div>
         </article>
     </div>

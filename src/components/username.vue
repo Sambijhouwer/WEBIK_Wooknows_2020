@@ -20,6 +20,7 @@
             <!-- Greet user -->
                 <div v-else>
                     <p class="title">Welcome {{ username }}</p>
+                    <img src="https://i.ibb.co/Y34k3hV/logo-no.png" class="level" id="owl_homepage" width="81" alt="logo">
                 </div>
             </article>
         </div>
