@@ -23,6 +23,7 @@
         </div>
 
         <!-- Blue join room list tile -->
+<<<<<<< HEAD
         <div class="tile is-parent">
           <article class="tile is-child notification is-info" style="text-align: center;">
             <div v-if="username !== ''">
@@ -51,6 +52,9 @@
             </div>
           </article>
         </div>
+=======
+        <joinroom v-on:error="error_handler" v-on:no-error="reset_error"></joinroom>
+>>>>>>> 9160dafca79a28ccb57441366f046a28a449a7be
 
         <!-- Green how to play section -->
         <div class="tile is-parent">
@@ -73,34 +77,19 @@
 <script>
 import username from '../components/username.vue'
 import createroom from '../components/createroom.vue'
+import joinroom from '../components/join_room.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'home',
   data: function () {
     return {
-      Active_Room: undefined,
-      errors: [],
-      rooms: []
+      errors: []
     }
   },
   components: {
     username,
-    createroom
-  },
-  sockets: {
-    connect: function () {
-      this.$socket.emit('get_rooms')
-    },
-    all_rooms: function (data) {
-      this.rooms = data
-    },
-    new_room: function (data) {
-      this.rooms.push(data['room'])
-    },
-    join_room: function (data) {
-      let roomId = data.room['game_id']
-      this.$socket.emit('joinGame', { 'room_id': roomId, 'name': this.username })
-    }
+    createroom,
+    joinroom
   },
   computed: {
     ...mapState(['username'])
@@ -112,13 +101,6 @@ export default {
     },
     reset_error: function () {
       this.errors = []
-    },
-    join_room: function () {
-      if (this.Active_Room !== undefined) {
-        this.$socket.emit('joinGame', { 'name': this.username, 'room_id': this.Active_Room })
-      } else {
-        this.errors.push('Please pick a room')
-      }
     }
   }
 }
