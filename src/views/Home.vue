@@ -2,7 +2,11 @@
   <div>
     <p v-if="errors.length">
       <ul>
-        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        <li id="error_list" class="notification is-danger" v-for="error in errors" v-bind:key="error">
+          <span class="icon has-text-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          {{ error }}</li>
       </ul>
     </p>
     <div class="container is-fluid">
@@ -39,7 +43,11 @@
               <button class="button is-warning is-medium" id="joinGame" v-on:click="join_room">Join</button>
             </div>
             <div v-else>
-              <p class="title">Pick a name to join quiz rooms</p>
+              <p class="title">
+                Hello! <br>
+                This is our trivia game! <br>
+                To join a room please fill in a username.
+              </p>
             </div>
           </article>
         </div>
