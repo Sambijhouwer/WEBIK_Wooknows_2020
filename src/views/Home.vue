@@ -23,38 +23,7 @@
         </div>
 
         <!-- Blue join room list tile -->
-<<<<<<< HEAD
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-info" style="text-align: center;">
-            <div v-if="username !== ''">
-              <p class="title">Available quiz rooms</p>
-              <div class="container is-fluid">
-                <div class="list is-hoverable" id="room_list">
-                  <!-- Room list is inserted here -->
-                  <a
-                  class="list-item"
-                  id="room_buttons"
-                  v-for="room in rooms"
-                  v-bind:class="{'is-active': room.game_id === Active_Room}"
-                  v-on:click="Active_Room = room.game_id"
-                  v-bind:key="room"
-                  >{{ room.game_name }}</a>
-                </div>
-              </div>
-              <button class="button is-warning is-medium" id="joinGame" v-on:click="join_room">Join</button>
-            </div>
-            <div v-else>
-              <p class="title">
-                Hello! <br>
-                This is our trivia game! <br>
-                To join a room please fill in a username.
-              </p>
-            </div>
-          </article>
-        </div>
-=======
         <joinroom v-on:error="error_handler" v-on:no-error="reset_error"></joinroom>
->>>>>>> 9160dafca79a28ccb57441366f046a28a449a7be
 
         <!-- Green how to play section -->
         <div class="tile is-parent">
