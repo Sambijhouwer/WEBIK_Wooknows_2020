@@ -51,7 +51,7 @@
             <div class="content" v-if="wrong === false">
               <p class="title" style="text-align: center;">Wrong!</p>
             </div>
-            
+
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
               <p class="title">Waiting for new question....</p>
@@ -67,25 +67,25 @@
                 <div class="tile is-parent is-vertical" >
 
                   <!-- Option A -->
-                  <div class="tile is-child is-info box" >
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p>
+                  <div class="tile is-child is-info box" v-on:click="send_ans" :data-ans="answers[0]">
+                    <p class="subtitle" v-html="answers[0]"></p>
                   </div>
 
                   <!-- Option B -->
-                  <div class="tile is-child is-primary box">
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p>
+                  <div class="tile is-child is-primary box" v-on:click="send_ans" :data-ans="answers[1]">
+                    <p class="subtitle" v-html="answers[1]"></p>
                   </div>
                 </div>
                 <div class="tile is-parent is-vertical">
 
                   <!-- Option C -->
-                  <div class="tile is-child is-danger box" >
-                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
+                  <div class="tile is-child is-danger box" v-on:click="send_ans" :data-ans="answers[2]">
+                      <p class="subtitle" v-html="answers[2]"></p>
                 </div>
 
                   <!-- Option D -->
-                  <div class="tile is-child is-warning box">
-                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p>
+                  <div class="tile is-child is-warning box" v-on:click="send_ans" :data-ans="answers[3]">
+                      <p class="subtitle" v-html="answers[3]"></p>
                   </div>
                 </div>
               </div>
