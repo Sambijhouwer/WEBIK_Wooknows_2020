@@ -1,6 +1,6 @@
 <template>
     <div class="tile is-parent">
-        <article class="tile is-child notification is-info" style="text-align: center;">
+        <article class="tile is-child notification is-info" id="centered">
             <div v-if="username !== ''">
                 <p class="title">Available quiz rooms</p>
                     <div class="container is-fluid">
@@ -107,5 +107,7 @@ export default {
 #joinGame {
   margin-top: 15px;
 }
-
+#centered{
+  text-align:center;
+}
 </style>

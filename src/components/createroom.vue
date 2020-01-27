@@ -38,7 +38,7 @@ export default {
         this.$emit('no-error')
         this.$socket.emit('createGame', { 'name': this.game_name })
       } else {
-        this.$emit('error', 'Fill in a valid name')
+        this.$emit('error', 'Fill in a valid room name')
       }
     }
   },
