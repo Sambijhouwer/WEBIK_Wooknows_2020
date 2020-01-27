@@ -27,9 +27,8 @@ export default {
       this.set_game(data['game'])
       this.$router.push('game')
     },
-    spel: function (data) {
-      console.log('Categorieeen')
-      this.ask_categorie(data['categorie'])
+    game: function (data) {
+      this.ask_categorie(data['categories'])
       this.set_game(data['game'])
     },
     questions: function (data) {

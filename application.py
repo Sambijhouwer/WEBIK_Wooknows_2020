@@ -70,16 +70,18 @@ def question(data):
     answers = [api_questions[0]['correct'], *api_questions[0]['incorrects']]
     emit('questions', {'question': question, 'answers': answers}, room=room_id)
 
-@socketio.on('antwoorden')
-def antwoorden(data):
+@socketio.on('answers')
+def answers(data):
     """Checks answers, send to scoreboard if there is a winner"""
     room = data['room_id']
-    GAME_ROOMS[room].up_score(data['user'], data['antwoord'])
+    GAME_ROOMS[room].up_score(data['user'], data['ans'])
     json_room = GAME_ROOMS[room].to_json()
     emit("lobby", {'game': json_room }, room=room)
     if GAME_ROOMS[room].teller % len(GAME_ROOMS[room].players) == 0:
         if GAME_ROOMS[room].check_winner():
             emit('scoreboard', {'game': GAME_ROOMS[room].to_json()}, room=room)
+            del GAME_ROOMS[room]
+            emit('all_rooms', [room.to_json() for room in GAME_ROOMS.values()])
         else:
             game_cats(room)
         
@@ -90,7 +92,7 @@ def game_cats(room):
     
     categories = random.sample(range(9, 32), 4)
     categories = [CATEGORIES[c] for c in categories]
-    emit('spel', {'categorie': categories, 'game': GAME_ROOMS[room].to_json()}, room=room)
+    emit('game', {'categories': categories, 'game': GAME_ROOMS[room].to_json()}, room=room)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
