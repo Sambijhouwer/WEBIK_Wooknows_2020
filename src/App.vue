@@ -27,9 +27,8 @@ export default {
       this.set_game(data['game'])
       this.$router.push('game')
     },
-    spel: function (data) {
-      console.log('Categorieeen')
-      this.ask_categorie(data['categorie'])
+    game: function (data) {
+      this.ask_categorie(data['categories'])
       this.set_game(data['game'])
     },
     questions: function (data) {
@@ -191,54 +190,12 @@ a.no_style {
   background-color: #373995;
 }
 
-/* Style for the room list; home page */
-
-#room_list{
-  border-radius: 10px;
-  max-height: 300px;
-  width: 100%;
-  overflow: auto;
-  text-decoration: none;
-  display: block;
-  overflow-y: scroll;
-  color: white;
-  font-size: larger;
-}
-
-#room_list::-webkit-scrollbar {
-  display: none !important;
-}
-
-#room_buttons {
-  background-color: rgb(36, 142, 213);
-  text-decoration: none !important;
-  color: white;
-  border-bottom: none;
-}
-
-#room_buttons:hover{
-  background-color: rgb(35, 137, 205);
-  text-decoration: none !important;
-  border-bottom: none;
-}
-
-#room_buttons.is-active{
-  background-color:rgb(34, 95, 206);
-  text-decoration: none !important;
-  display: block;
-  border-bottom: none;
-}
-
-#joinGame {
-  margin-top: 15px;
-}
-
-/* Zet de score in de room netjes */
+/* Fix room score; game lobby */
 .room_score {
   padding-left: 0px;
 }
 
- /* Style for the logo */
+ /* Style for the logo; homepage */
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -252,4 +209,14 @@ a.no_style {
   padding-bottom: 10px;
 }
 
+/* Style for error list */
+#error_list{
+  color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+  text-align: center;
+  padding: 5px 5px;
+
+}
 </style>

@@ -38,8 +38,15 @@ export default {
         this.$emit('no-error')
         this.$socket.emit('createGame', { 'name': this.game_name })
       } else {
-        this.$emit('error', 'Fill in a valid name')
+        this.$emit('error', 'Fill in a valid room name')
       }
+    }
+  },
+  sockets: {
+    // Join created room
+    join_room: function (data) {
+      let roomId = data.room['game_id']
+      this.$socket.emit('joinGame', { 'room_id': roomId, 'name': this.username })
     }
   }
 

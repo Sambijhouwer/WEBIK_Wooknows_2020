@@ -10,7 +10,8 @@ export default new Vuex.Store({
     categories: [],
     questions: [],
     correct: '',
-    answers: []
+    answers: [],
+    rooms: []
   },
   getters: {
   },
@@ -39,6 +40,12 @@ export default new Vuex.Store({
         [a[i], a[j]] = [a[j], a[i]]
       }
       state.answers = a
+    },
+    add_room (state, room) {
+      state.rooms.push(room)
+    },
+    set_rooms (state, data) {
+      state.rooms = data
     }
 
   },

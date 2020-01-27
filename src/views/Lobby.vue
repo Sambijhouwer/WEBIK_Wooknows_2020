@@ -25,7 +25,7 @@
       </div>
 
       <!-- Ready up tile -->
-      <div class="tile is-child box" id="room_ready">
+      <div class="tile is-child box" id="room_ready" v-if="game.players.length > 1">
           <div v-if="ready === false">
             <p class="subtitle">Ready up for the game to start</p>
             <button class="button is-success is-large is-fullwidth" type="submit" v-on:click="ready_up">READY!</button>
@@ -33,8 +33,11 @@
           <div v-else>
               <p class="subtitle">You're ready!</p>
           </div>
-          </div>
-          </div>
+      </div>
+      <div v-else>
+        <p class='subtitle'>You need at least 2 players to start a game</p>
+      </div>
+    </div>
 
         <!-- Tile which holds Q&A -->
         <div class="tile" id="questionbox">
@@ -42,10 +45,10 @@
           <!-- If quizmaster has already selected a category: -->
           <article class="tile notification is-vertical" id="QnA_container">
 
-            <div class="content" v-if="gofo === true">
+            <div class="content" v-if="correct === true">
               <p class="title" style="text-align: center;">Correct!</p>
             </div>
-            <div class="content" v-if="gofo === false">
+            <div class="content" v-if="correct === false">
               <p class="title" style="text-align: center;">Wrong!</p>
             </div>
             <!-- Question -->
@@ -144,7 +147,7 @@ export default {
       ready: false,
       modalActive: false,
       currentquestions: '',
-      gofo: undefined
+      correct: undefined
     }
   },
   watch: {
@@ -155,7 +158,7 @@ export default {
     },
     questions: function () {
       if (this.questions.length !== 0) {
-        this.gofo = undefined
+        this.correct = undefined
         this.currentquestions = this.questions.pop()
         this.pop_question()
       }
@@ -176,8 +179,8 @@ export default {
     },
     send_ans: function (event) {
       this.currentquestions = ''
-      this.gofo = event.target.getAttribute('data-ans') === this.correct
-      this.$socket.emit('antwoorden', { 'antwoord': this.gofo, 'room_id': this.game['game_id'], 'user': this.username })
+      this.correct = event.target.getAttribute('data-ans') === this.correct
+      this.$socket.emit('answers', { 'ans': this.correct, 'room_id': this.game['game_id'], 'user': this.username })
     }
   }
 }
