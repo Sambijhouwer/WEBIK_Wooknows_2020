@@ -1,7 +1,7 @@
 <template>
     <div class="tile">
         <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-warning" style="text-align: center;">
+            <article class="tile is-child notification is-warning" id="centered">
                 <div v-if='username === ""'>
                     <p class="title">Join</p>
                     <p class="subtitle">Choose your username</p>
@@ -55,5 +55,8 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+#centered{
+  text-align:center;
 }
 </style>
