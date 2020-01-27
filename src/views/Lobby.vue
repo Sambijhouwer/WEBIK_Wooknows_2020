@@ -207,7 +207,7 @@ export default {
   width:20em;
 }
 .usernameInList{
-  max-width:12em;
+  max-width:65%;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
