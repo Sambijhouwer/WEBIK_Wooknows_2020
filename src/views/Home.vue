@@ -2,7 +2,11 @@
   <div>
     <p v-if="errors.length">
       <ul>
-        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        <li id="error_list" class="notification is-danger" v-for="error in errors" v-bind:key="error">
+          <span class="icon has-text-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          </span>
+          {{ error }}</li>
       </ul>
     </p>
     <div class="container is-fluid">

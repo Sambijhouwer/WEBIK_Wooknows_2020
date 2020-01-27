@@ -190,12 +190,12 @@ a.no_style {
   background-color: #373995;
 }
 
-/* Zet de score in de room netjes */
+/* Fix room score; game lobby */
 .room_score {
   padding-left: 200px;
 }
 
- /* Style for the logo */
+ /* Style for the logo; homepage */
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -209,4 +209,14 @@ a.no_style {
   padding-bottom: 10px;
 }
 
+/* Style for error list */
+#error_list{
+  color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+  text-align: center;
+  padding: 5px 5px;
+
+}
 </style>
