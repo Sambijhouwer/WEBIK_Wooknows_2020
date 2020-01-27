@@ -14,12 +14,12 @@
       <div class="tile is-child box" id="room_board">
         <p class="title">Player list</p>
                 <ul id="scoreboard">
-              <li style="float:left;"> Names </li> <li style="text-align:right; padding-right:17px;"> Score</li>
-          <li v-for="player in game.players" v-bind:key="player" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-            <span v-if=  "game.ready[player] === true" style="color: green;">
-            <span style="max-width:12em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; padding-right:0; display:inline-block;"> {{ player }}</span> <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
-            <span v-else style="color: #f25b35; width:20em;">
-            <span style="max-width:12em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; padding-right:0;display:inline-block;"> {{ player }} </span> <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+              <li class="leftTitle"> Names </li> <li class="rightTitle"> Score</li>
+          <li v-for="player in game.players" v-bind:key="player" class="forloop">
+            <span v-if=  "game.ready[player] === true" class="ready">
+            <span class="usernameInList"> {{ player }}</span> <span class="room_score" >{{ game.scores[player] }}</span></span>
+            <span v-else class="unready">
+            <span class="usernameInList"> {{ player }} </span> <span class="room_score">{{ game.scores[player] }}</span></span>
           </li>
         </ul>
       </div>
@@ -46,19 +46,19 @@
           <article class="tile notification is-vertical" id="QnA_container">
 
             <div class="content" v-if="correct === true">
-              <p class="title" style="text-align: center;">Correct!</p>
+              <p class="title">Correct!</p>
             </div>
             <div class="content" v-if="correct === false">
-              <p class="title" style="text-align: center;">Wrong!</p>
+              <p class="title">Wrong!</p>
             </div>
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
-              <p class="title" style="text-align: center;">Waiting for new question....</p>
+              <p class="title">Waiting for new question....</p>
             </div>
 
             <div v-else>
               <div class="content">
-                <p class="title" style="text-align: center;" v-html="currentquestions"></p>
+                <p class="title" v-html="currentquestions"></p>
               </div>
 
               <!-- Answers -->
@@ -99,7 +99,7 @@
         <div class="modal-content">
           <div class="content">
             <div class="tile is-parent is-vertical is-info notification">
-              <h3 style="color: white; text-align: center;">
+              <h3 class="title">
                 Congrats! You are the quizmaster. <br>
                 Please pick one of the listed categories:
               </h3>
@@ -186,3 +186,42 @@ export default {
 }
 
 </script>
+<style scoped>
+.leftTitle{
+  float:left;
+}
+.rightTitle{
+  text-align:right;
+  padding-right:17px;
+}
+.forloop{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.ready{
+  color: green;
+}
+.unready{
+  color: #f25b35;
+  width:20em;
+}
+.usernameInList{
+  max-width:12em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:left;
+  padding-right:0;
+  display:inline-block;
+}
+.room_score{
+  color:white;
+  float:right;
+  padding-right:2em;
+}
+.title{
+  text-align: center;
+}
+
+</style>
