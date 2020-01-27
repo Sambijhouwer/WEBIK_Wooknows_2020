@@ -235,7 +235,7 @@ a.no_style {
 
 /* Zet de score in de room netjes */
 .room_score {
-  padding-left: 200px;
+  padding-left: 0px;
 }
 
  /* Style for the logo */

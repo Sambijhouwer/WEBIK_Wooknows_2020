@@ -13,13 +13,13 @@
       <!-- Player scoreboard tile -->
       <div class="tile is-child box" id="room_board">
         <p class="title">Player list</p>
-        <p style="text-align: left;">Names<span style= "color:#383995;">_________________________</span>Score</p>
-        <ul id="scoreboard">
-          <li v-for="player in game.players" v-bind:key="player" style="max-width:25em;">
+                <ul id="scoreboard">
+              <li style="float:left;"> Names </li> <li style="text-align:right; padding-right:17px;"> Score</li>
+          <li v-for="player in game.players" v-bind:key="player" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
             <span v-if=  "game.ready[player] === true" style="color: green;">
-              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
-            <span v-else style="color: #f25b35; max-width:30em;">
-              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+            <span style="max-width:12em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; padding-right:0; display:inline-block;"> {{ player }}</span> <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+            <span v-else style="color: #f25b35; width:20em;">
+            <span style="max-width:12em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; padding-right:0;display:inline-block;"> {{ player }} </span> <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
           </li>
         </ul>
       </div>
