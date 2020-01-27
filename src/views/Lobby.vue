@@ -13,13 +13,13 @@
       <!-- Player scoreboard tile -->
       <div class="tile is-child box" id="room_board">
         <p class="title">Player list</p>
-        <p style="text-align: left;">Names<span style= "color:#383995;">_________________________</span>Score</p>
-        <ul id="scoreboard">
-          <li v-for="player in game.players" v-bind:key="player" style="max-width:25em;">
-            <span v-if=  "game.ready[player] === true" style="color: green;">
-              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
-            <span v-else style="color: #f25b35; max-width:30em;">
-              {{ player }} <span class="room_score" style="color:white; float:right; padding-right:2em;">{{ game.scores[player] }}</span></span>
+                <ul id="scoreboard">
+              <li class="leftTitle"> Names </li> <li class="rightTitle"> Score</li>
+          <li v-for="player in game.players" v-bind:key="player" class="forloop">
+            <span v-if=  "game.ready[player] === true" class="ready">
+            <span class="usernameInList"> {{ player }}</span> <span class="room_score" >{{ game.scores[player] }}</span></span>
+            <span v-else class="unready">
+            <span class="usernameInList"> {{ player }} </span> <span class="room_score">{{ game.scores[player] }}</span></span>
           </li>
         </ul>
       </div>
@@ -53,12 +53,12 @@
             </div>
             <!-- Question -->
             <div class="content" v-if="currentquestions === ''">
-              <p class="title" style="text-align: center;">Waiting for new question....</p>
+              <p class="title">Waiting for new question....</p>
             </div>
 
             <div v-else>
               <div class="content">
-                <p class="title" style="text-align: center;" v-html="currentquestions"></p>
+                <p class="title" v-html="currentquestions"></p>
               </div>
 
               <!-- Answers -->
@@ -99,7 +99,7 @@
         <div class="modal-content">
           <div class="content">
             <div class="tile is-parent is-vertical is-info notification">
-              <h3 style="color: white; text-align: center;">
+              <h3 class="title">
                 Congrats! You are the quizmaster. <br>
                 Please pick one of the listed categories:
               </h3>
@@ -186,3 +186,42 @@ export default {
 }
 
 </script>
+<style scoped>
+.leftTitle{
+  float:left;
+}
+.rightTitle{
+  text-align:right;
+  padding-right:17px;
+}
+.forloop{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.ready{
+  color: green;
+}
+.unready{
+  color: #f25b35;
+  width:20em;
+}
+.usernameInList{
+  max-width:12em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:left;
+  padding-right:0;
+  display:inline-block;
+}
+.room_score{
+  color:white;
+  float:right;
+  padding-right:2em;
+}
+.title{
+  text-align: center;
+}
+
+</style>

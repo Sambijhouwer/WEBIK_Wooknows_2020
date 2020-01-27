@@ -192,7 +192,7 @@ a.no_style {
 
 /* Fix room score; game lobby */
 .room_score {
-  padding-left: 200px;
+  padding-left: 0px;
 }
 
  /* Style for the logo; homepage */
