@@ -90,19 +90,17 @@ a.no_style {
   text-align: center;
 }
 
-/* The container for the questions; game lobby */
-#questionbox {
-  padding: .75rem;
+/* Style for error list */
+#error_list{
+  color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
+  text-align: center;
+  padding: 5px 5px;
 }
 
-#QnA_container {
-  background-color: #373995;
-  color: white;
-  border-width: 2px;
-  border-color: white;
-  border-style: solid;
-}
- /* Style for the logo; homepage */
+ /* Style for the logo; top bar */
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -116,14 +114,4 @@ a.no_style {
   padding-bottom: 10px;
 }
 
-/* Style for error list */
-#error_list{
-  color: white;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 1%;
-  text-align: center;
-  padding: 5px 5px;
-
-}
 </style>
