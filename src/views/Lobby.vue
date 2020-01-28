@@ -15,7 +15,7 @@
         <p class="title">Player list</p>
                 <ul id="scoreboard">
               <li class="leftTitle"> Names </li> <li class="rightTitle"> Score</li>
-          <li v-for="player in game.players" v-bind:key="player" class="forloop">
+          <li v-for="player in game.players" v-bind:key="player" class="roomplayers">
             <span v-if=  "game.ready[player] === true" class="ready">
             <span class="usernameInList"> {{ player }}</span> <span class="room_score" >{{ game.scores[player] }}</span></span>
             <span v-else class="unready">
@@ -195,7 +195,7 @@ export default {
   text-align:right;
   padding-right:17px;
 }
-.forloop{
+.roomplayers{
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -223,6 +223,47 @@ export default {
 }
 .title{
   text-align: center;
+}
+/* Four tiles answers; game lobby */
+.tile.is-child.is-info.box {
+  background-color: #1FB58F;
+  color: white;
+  padding-top: 10%;
+  text-align: center;
+
+  border-color: #168267;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.tile.is-child.is-info.box:hover {
+  filter: brightness(92%);
+}
+
+.tile.is-child.is-primary.box {
+  background-color: #EAB126;
+  color: white;
+  padding-top: 10%;
+  text-align: center;
+
+  border-color: #c2921f;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.tile.is-child.is-primary.box:hover {
+  filter: brightness(92%);
+}
+
+.tile.is-child.is-danger.box {
+  background-color: #F24C4E;
+  color: white;
+  padding-top: 10%;
+  text-align: center;
+
+  border-color: #d13f40;
+  border-width: 4px;
+  border-style: solid;
 }
 
 /* Four tiles answers; game lobby */
