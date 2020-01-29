@@ -90,112 +90,17 @@ a.no_style {
   text-align: center;
 }
 
-/* The container for the questions; game lobby */
-#questionbox {
-  padding: .75rem;
-}
-
-#QnA_container {
-  background-color: #373995;
+/* Style for error list */
+#error_list{
   color: white;
-  border-width: 2px;
-  border-color: white;
-  border-style: solid;
-}
-
-/* Four tiles answers; game lobby */
-.tile.is-child.is-info.box {
-  background-color: #1FB58F;
-  color: white;
-  padding-top: 10%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1%;
   text-align: center;
-
-  border-color: #168267;
-  border-width: 4px;
-  border-style: solid;
+  padding: 5px 5px;
 }
 
-.tile.is-child.is-info.box:hover {
-  filter: brightness(92%);
-}
-
-.tile.is-child.is-primary.box {
-  background-color: #EAB126;
-  color: white;
-  padding-top: 10%;
-  text-align: center;
-
-  border-color: #c2921f;
-  border-width: 4px;
-  border-style: solid;
-}
-
-.tile.is-child.is-primary.box:hover {
-  filter: brightness(92%);
-}
-
-.tile.is-child.is-danger.box {
-  background-color: #F24C4E;
-  color: white;
-  padding-top: 10%;
-  text-align: center;
-
-  border-color: #d13f40;
-  border-width: 4px;
-  border-style: solid;
-}
-
-.tile.is-child.is-danger.box:hover {
-  filter: brightness(92%);
-}
-
-.tile.is-child.is-warning.box {
-  background-color: #1B7B34;
-  color: white;
-  padding-top: 10%;
-  text-align: center;
-
-  border-color: #155e28;
-  border-width: 4px;
-  border-style: solid;
-
-}
-
-.tile.is-child.is-warning.box:hover {
-  filter: brightness(92%);
-}
-
-/* Score board; game lobby */
-#room_board {
-  border-color: white;
-  border-width: 2px;
-  border-style: solid;
-  background-color: #373995;
-  color: white;
-}
-
-/* Ready up tile; game lobby */
-#room_ready {
-  border-color: white;
-  border-width: 2px;
-  border-style: solid;
-  background-color: #373995;
-}
-
-/* Room information; game lobby */
-#room_info {
-  border-color: white;
-  border-width: 2px;
-  border-style: solid;
-  background-color: #373995;
-}
-
-/* Fix room score; game lobby */
-.room_score {
-  padding-left: 0px;
-}
-
- /* Style for the logo; homepage */
+ /* Style for the logo; top bar */
 #logo1{
   font-size: 4vw;
   color: rgb(109, 110, 113)
@@ -209,14 +114,4 @@ a.no_style {
   padding-bottom: 10px;
 }
 
-/* Style for error list */
-#error_list{
-  color: white;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 1%;
-  text-align: center;
-  padding: 5px 5px;
-
-}
 </style>

@@ -15,7 +15,7 @@
         <p class="title">Player list</p>
                 <ul id="scoreboard">
               <li class="leftTitle"> Names </li> <li class="rightTitle"> Score</li>
-          <li v-for="player in game.players" v-bind:key="player" class="forloop">
+          <li v-for="player in game.players" v-bind:key="player" class="roomplayers">
             <span v-if=  "game.ready[player] === true" class="ready">
             <span class="usernameInList"> {{ player }}</span> <span class="room_score" >{{ game.scores[player] }}</span></span>
             <span v-else class="unready">
@@ -67,25 +67,25 @@
                 <div class="tile is-parent is-vertical" >
 
                   <!-- Option A -->
-                  <div class="tile is-child is-info box" v-on:click="send_ans" :data-ans="answers[0]">
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p>
+                  <div class="tile is-child is-info box" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]">
+                    <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p> -->
                   </div>
 
                   <!-- Option B -->
-                  <div class="tile is-child is-primary box" v-on:click="send_ans" :data-ans="answers[1]">
-                    <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p>
+                  <div class="tile is-child is-primary box" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]">
+                    <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p> -->
                   </div>
                 </div>
                 <div class="tile is-parent is-vertical">
 
                   <!-- Option C -->
-                  <div class="tile is-child is-danger box" v-on:click="send_ans" :data-ans="answers[2]">
-                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p>
+                  <div class="tile is-child is-danger box" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]">
+                      <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p> -->
                 </div>
 
                   <!-- Option D -->
-                  <div class="tile is-child is-warning box" v-on:click="send_ans" :data-ans="answers[3]">
-                      <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p>
+                  <div class="tile is-child is-warning box" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]">
+                      <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p> -->
                   </div>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default {
   text-align:right;
   padding-right:17px;
 }
-.forloop{
+.roomplayers{
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -223,6 +223,110 @@ export default {
 }
 .title{
   text-align: center;
+}
+/* Four tiles answers; game lobby */
+.tile.is-child.is-info.box {
+  background-color: #1FB58F;
+  color: white;
+  padding-top: 5%;
+  text-align: center;
+  font-size: 25px;
+
+  border-color: #168267;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.tile.is-child.is-info.box:hover {
+  filter: brightness(92%);
+}
+
+.tile.is-child.is-primary.box {
+  background-color: #EAB126;
+  color: white;
+  padding-top: 5%;
+  text-align: center;
+  font-size: 25px;
+
+  border-color: #c2921f;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.tile.is-child.is-primary.box:hover {
+  filter: brightness(92%);
+}
+
+.tile.is-child.is-danger.box {
+  background-color: #F24C4E;
+  color: white;
+  padding-top: 5%;
+  text-align: center;
+  font-size: 25px;
+
+  border-color: #d13f40;
+  border-width: 4px;
+  border-style: solid;
+}
+
+.tile.is-child.is-warning.box {
+  background-color: #1B7B34;
+  color: white;
+  padding-top: 5%;
+  text-align: center;
+  font-size: 25px;
+
+  border-color: #155e28;
+  border-width: 4px;
+  border-style: solid;
+
+}
+
+.tile.is-child.is-warning.box:hover {
+  filter: brightness(92%);
+}
+
+/* Score board; game lobby */
+#room_board {
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #373995;
+  color: white;
+}
+
+/* Ready up tile; game lobby */
+#room_ready {
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #373995;
+}
+
+/* Room information; game lobby */
+#room_info {
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #373995;
+}
+
+/* Fix room score; game lobby */
+.room_score {
+  padding-left: 0px;
+}
+
+/* The container for the questions; game lobby */
+#questionbox {
+  padding: .75rem;
+}
+
+#QnA_container {
+  background-color: #373995;
+  color: white;
+  border-width: 2px;
+  border-color: white;
+  border-style: solid;
 }
 
 </style>
