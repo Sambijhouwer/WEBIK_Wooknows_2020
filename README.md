@@ -65,7 +65,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 - vuejs.org
 - flask(socket.io)
 
-# concurrerende websites
+# Concurrerende websites
 
 - kahoot.com
 - vraevrae.nl
@@ -80,7 +80,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
     A page that displays the winner(s) and total scores after a game has ended
 
 
-# plugins and frameworks
+# Plugins and frameworks
 
 - Flask
     https://flask.palletsprojects.com/en/1.1.x/
@@ -97,7 +97,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 - Vue-socket.io
     https://github.com/MetinSeylan/Vue-Socket.io
 
-# schetsen
+# Schetsen
 homepage before username
 ![homepage before username](doc/homepage1.png)
 homepage after username
