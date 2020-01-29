@@ -7,7 +7,7 @@
       <!-- Room information tile -->
       <div class="tile is-child box" id="room_info">
         <p class="title">{{ game.game_name }}</p>
-        <p class="subtitle">current quizmaster: {{game.quizmaster}} </p>
+        <p class="subtitle">Current quizmaster: {{game.quizmaster}} </p>
       </div>
 
       <!-- Player scoreboard tile -->
