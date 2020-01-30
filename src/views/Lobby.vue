@@ -7,7 +7,7 @@
       <!-- Room information tile -->
       <div class="tile is-child box" id="room_info">
         <p class="title">{{ game.game_name }}</p>
-        <p class="subtitle">current quizmaster: {{game.quizmaster}} </p>
+        <p class="subtitle">Current quizmaster: <span style="font-weight: 600;">{{game.quizmaster}}</span> </p>
       </div>
 
       <!-- Player scoreboard tile -->
@@ -42,7 +42,6 @@
         <!-- Tile which holds Q&A -->
         <div class="tile" id="questionbox">
 
-          <!-- If quizmaster has already selected a category: -->
           <article class="tile notification is-vertical" id="QnA_container">
 
             <div class="content" v-if="wrong === true">
@@ -68,27 +67,24 @@
 
                   <!-- Option A -->
                   <div class="tile is-child is-info box" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]">
-                    <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[0]" v-html="answers[0]"></p> -->
                   </div>
 
                   <!-- Option B -->
                   <div class="tile is-child is-primary box" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]">
-                    <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[1]" v-html="answers[1]"></p> -->
                   </div>
                 </div>
                 <div class="tile is-parent is-vertical">
 
                   <!-- Option C -->
                   <div class="tile is-child is-danger box" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]">
-                      <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[2]" v-html="answers[2]"></p> -->
-                </div>
+                  </div>
 
                   <!-- Option D -->
                   <div class="tile is-child is-warning box" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]">
-                      <!-- <p class="subtitle" v-on:click="send_ans" :data-ans="answers[3]" v-html="answers[3]"></p> -->
                   </div>
                 </div>
               </div>
+            
             </div>
           </article>
         </div>
