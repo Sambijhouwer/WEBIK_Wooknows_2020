@@ -43,9 +43,19 @@ export default {
     get_user: function () {
       if (this.user !== '') {
         this.$emit('no-error')
-        this.set_username(this.user)
+        this.$socket.emit('check_name', { 'name': this.user })
       } else {
         this.$emit('error', 'Fill in a valid name')
+      }
+    }
+  },
+  sockets: {
+    username: function (data) {
+      if (data['available']) {
+        this.$emit('no-error')
+        this.set_username(data['username'])
+      } else {
+        this.$emit('error', 'Name is already taken')
       }
     }
   }

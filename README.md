@@ -41,10 +41,7 @@ python application.py (backend)
 # Samenvatting
 
 Hoo Knows is een multiplayer Trivia spel. Spelers kunnen een unieke username aanmaken en een room aanmaken
-of een al bestaande room joinen. In deze room zitten 3 (of minder) andere spelers. Zij krijgen allemaal
-een vraag te zien en moeten zo snel mogelijk goed antwoord geven op de vraag. Het thema van de vragen 
-wordt gekozen door één van de spelers, de quizmaster. Deze wordt random gekozen na een random aantal rondes.
-Na een variabel aantal vragen wordt de winnaar bepaald.
+of een al bestaande room joinen. In deze room zitten in totaal 2-4 spelers. Er wordt een random quizmaster gekozen, die de categorie mag bepalen voor de volgende vraag. Alle spelers krijgen dezelfde vraag te zien uit de gekozen categorie. De eerste speler met 10 punten is de winnaar van de room.
 
 # Views
 - Zie doc
@@ -63,7 +60,6 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 - quizmaster
 - rooms maken/joinen
 - Vragen kunnen beantwoorden
-- interessant winsysteem
 
 # Afhankelijkheden
 
@@ -73,7 +69,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 - vuejs.org
 - flask(socket.io)
 
-# concurrerende websites
+# Concurrerende websites
 
 - kahoot.com
 - vraevrae.nl
@@ -88,7 +84,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
     A page that displays the winner(s) and total scores after a game has ended
 
 
-# plugins and frameworks
+# Plugins and frameworks
 
 - Flask
     https://flask.palletsprojects.com/en/1.1.x/
@@ -105,7 +101,7 @@ De volgende functies moeten worden geimplementeerd worden om aan onze minimale e
 - Vue-socket.io
     https://github.com/MetinSeylan/Vue-Socket.io
 
-# schetsen
+# Schetsen
 homepage before username
 ![homepage before username](doc/homepage1.png)
 homepage after username

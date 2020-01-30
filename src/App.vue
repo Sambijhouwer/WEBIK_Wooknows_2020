@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['set_game', 'ask_categorie', 'add_questions', 'set_correct', 'shuffle_answers'])
+    ...mapMutations(['set_game', 'ask_categorie', 'add_questions', 'set_correct', 'shuffle_answers', 'set_username'])
   }
 }
 </script>
